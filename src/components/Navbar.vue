@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useColorMode } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
@@ -34,7 +34,7 @@ import {
 } from "lucide-vue-next";
 import ToggleTheme from "./ToggleTheme.vue";
 
-const { t, locale } = useI18n();
+const { t, tm, locale } = useI18n();
 const mode = useColorMode();
 mode.value = "dark";
 const router = useRouter();
@@ -55,13 +55,7 @@ const setLang = (code: string) => {
   showLang.value = false;
 };
 
-// Mobile accordion states
-const openSections = ref<Set<string>>(new Set());
-const toggleSection = (s: string) => {
-  openSections.value.has(s) ? openSections.value.delete(s) : openSections.value.add(s);
-};
-
-interface NavService { icon: any; label: string; href: string }
+const serviceItems = computed(() => tm('services.items') as any[]);
 
 const serviceIcons = [Code2, Bot, Shield, Cloud, BarChart3, Video, Megaphone, Wifi, Lock, Link, Settings, Layers, Users];
 const serviceHrefs = ["#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services"];
@@ -155,7 +149,7 @@ const navigate = (href: string) => {
                   <button v-for="(icon, i) in serviceIcons" :key="i" @click="navigate(serviceHrefs[i])"
                     class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
                     <component :is="icon" class="size-3.5 text-primary flex-shrink-0" />
-                    {{ (t('services.items') as any[])[i]?.title }}
+                    {{ serviceItems[i]?.title }}
                   </button>
                 </CollapsibleContent>
               </Collapsible>
@@ -263,7 +257,7 @@ const navigate = (href: string) => {
                 >
                   <a :href="serviceHrefs[i]" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted">
                     <component :is="icon" class="size-4 text-primary flex-shrink-0" />
-                    <span class="text-sm font-medium">{{ (t('services.items') as any[])[i]?.title }}</span>
+                    <span class="text-sm font-medium">{{ serviceItems[i]?.title }}</span>
                   </a>
                 </NavigationMenuLink>
               </div>
