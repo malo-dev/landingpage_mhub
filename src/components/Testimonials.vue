@@ -114,19 +114,20 @@ const iconMap: Record<string, any> = {
 <template>
   <section id="modules" class="container py-24 sm:py-32">
     <div class="text-center mb-8">
-      <h2 class="text-lg text-primary text-center mb-2 tracking-wider">
+      <h2 v-animate class="text-lg text-primary text-center mb-2 tracking-wider">
         M-STORE
       </h2>
-      <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">
+      <h2 v-animate="{ delay: 100 }" class="text-3xl md:text-4xl text-center font-bold mb-4">
         29 modules intégrés
       </h2>
-      <p class="md:w-1/2 mx-auto text-muted-foreground">
+      <p v-animate="{ delay: 200 }" class="md:w-1/2 mx-auto text-muted-foreground">
         Chaque module gère un aspect précis de votre commerce — ensemble, ils forment
         un système de gestion complet et cohérent.
       </p>
     </div>
 
     <Carousel
+      v-animate="{ type: 'fade-up', delay: 250 }"
       :opts="{ align: 'start' }"
       class="relative w-[80%] sm:w-[90%] lg:max-w-screen-xl mx-auto"
     >

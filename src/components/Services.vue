@@ -7,7 +7,7 @@ import demoVideo from "@/assets/demo_mhub.mp4";
 
 <template>
   <section id="mstore" class="container py-24 sm:py-32">
-    <div class="text-center mb-12">
+    <div v-animate class="text-center mb-12">
       <Badge variant="outline" class="text-sm py-2 mb-4">
         <span class="mr-2 text-primary"><Badge>Premier projet</Badge></span>
         <span>M-HUB lance M-STORE</span>
@@ -41,7 +41,7 @@ import demoVideo from "@/assets/demo_mhub.mp4";
     </div>
 
     <!-- Demo Video -->
-    <div class="relative group lg:w-[85%] mx-auto">
+    <div v-animate="{ type: 'zoom-in', delay: 150 }" class="relative group lg:w-[85%] mx-auto">
       <div
         class="absolute -top-6 right-12 w-[90%] h-12 lg:h-[60%] bg-primary/40 blur-3xl rounded-full"
       ></div>
@@ -63,19 +63,19 @@ import demoVideo from "@/assets/demo_mhub.mp4";
 
     <!-- M-STORE Stats -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
-      <div class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 0 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">29</div>
         <div class="text-muted-foreground">Modules</div>
       </div>
-      <div class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 100 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">92</div>
         <div class="text-muted-foreground">Fonctionnalités</div>
       </div>
-      <div class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 200 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">Multi</div>
         <div class="text-muted-foreground">Devises & Branches</div>
       </div>
-      <div class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 300 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">24/7</div>
         <div class="text-muted-foreground">Support</div>
       </div>

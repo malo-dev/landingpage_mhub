@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useColorMode } from "@vueuse/core";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -29,14 +30,30 @@ import {
   Menu, Zap, Store, RefreshCw, ChevronDown,
   Info, Globe, Users, Code2, Bot, Shield, Cloud,
   BarChart3, Video, Lock, Link, Settings, Megaphone,
-  Wifi, Layers, ExternalLink,
+  Wifi, Layers, ExternalLink, Languages,
 } from "lucide-vue-next";
 import ToggleTheme from "./ToggleTheme.vue";
 
+const { t, locale } = useI18n();
 const mode = useColorMode();
 mode.value = "dark";
 const router = useRouter();
 const isOpen = ref(false);
+const showLang = ref(false);
+
+const langs = [
+  { code: 'fr', flag: '🇫🇷', label: 'Français' },
+  { code: 'en', flag: '🇬🇧', label: 'English' },
+  { code: 'es', flag: '🇪🇸', label: 'Español' },
+  { code: 'de', flag: '🇩🇪', label: 'Deutsch' },
+  { code: 'nl', flag: '🇳🇱', label: 'Nederlands' },
+];
+
+const setLang = (code: string) => {
+  locale.value = code;
+  localStorage.setItem('mhub-lang', code);
+  showLang.value = false;
+};
 
 // Mobile accordion states
 const openSections = ref<Set<string>>(new Set());
@@ -46,30 +63,21 @@ const toggleSection = (s: string) => {
 
 interface NavService { icon: any; label: string; href: string }
 
-const services: NavService[] = [
-  { icon: Code2,     label: "Développement Web & Mobile",  href: "#services" },
-  { icon: Bot,       label: "Intelligence Artificielle",    href: "#services" },
-  { icon: Shield,    label: "Réseaux & Cybersécurité",      href: "#services" },
-  { icon: Cloud,     label: "Cloud & Hébergement",          href: "#services" },
-  { icon: BarChart3, label: "Data Analytics & BI",          href: "#services" },
-  { icon: Video,     label: "Production Vidéo 2D/3D",       href: "#services" },
-  { icon: Megaphone, label: "Marketing Digital",            href: "#services" },
-  { icon: Wifi,      label: "Hardware & Internet",          href: "#services" },
-  { icon: Lock,      label: "Cryptographie",                href: "#services" },
-  { icon: Link,      label: "Blockchain & Web3",            href: "#services" },
-  { icon: Settings,  label: "CRM & No-Code",                href: "#services" },
-  { icon: Layers,    label: "Intégration de systèmes",      href: "#services" },
-  { icon: Users,     label: "Formation & Accompagnement",   href: "#services" },
-];
+const serviceIcons = [Code2, Bot, Shield, Cloud, BarChart3, Video, Megaphone, Wifi, Lock, Link, Settings, Layers, Users];
+const serviceHrefs = ["#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services","#services"];
 
 const navigate = (href: string) => {
   isOpen.value = false;
+  showLang.value = false;
   if (href.startsWith("/")) { router.push(href); }
   else { window.location.hash = href; }
 };
 </script>
 
 <template>
+  <!-- Click-outside overlay for lang dropdown -->
+  <div v-if="showLang" class="fixed inset-0 z-40" @click="showLang = false" />
+
   <header
     :class="{
       'shadow-light': mode === 'light',
@@ -89,6 +97,21 @@ const navigate = (href: string) => {
 
     <!-- ───── Mobile ───── -->
     <div class="flex items-center lg:hidden gap-2">
+      <!-- Mobile lang switcher -->
+      <div class="relative">
+        <button @click="showLang = !showLang" class="flex items-center gap-1 px-2 py-1.5 rounded-md hover:bg-muted text-xs font-bold border uppercase">
+          <Languages class="size-3.5 text-primary" />
+          {{ locale }}
+        </button>
+        <div v-if="showLang" class="absolute right-0 top-full mt-1 bg-card border rounded-xl shadow-lg z-50 py-1 min-w-[150px]">
+          <button v-for="l in langs" :key="l.code" @click="setLang(l.code)"
+            class="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-muted transition-colors"
+            :class="{ 'text-primary font-semibold': locale === l.code }">
+            <span>{{ l.flag }}</span>
+            <span>{{ l.label }}</span>
+          </button>
+        </div>
+      </div>
       <ToggleTheme />
       <Sheet v-model:open="isOpen">
         <SheetTrigger as-child>
@@ -112,27 +135,27 @@ const navigate = (href: string) => {
               <!-- Qui sommes nous -->
               <Collapsible>
                 <CollapsibleTrigger class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">
-                  <span class="flex items-center gap-2"><Info class="size-4 text-primary" /> Qui sommes nous</span>
+                  <span class="flex items-center gap-2"><Info class="size-4 text-primary" /> {{ t('nav.whoWeAre') }}</span>
                   <ChevronDown class="size-4 text-muted-foreground" />
                 </CollapsibleTrigger>
                 <CollapsibleContent class="pl-4 flex flex-col gap-1 mt-1">
-                  <button @click="navigate('#about')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">À propos de M-HUB</button>
-                  <button @click="navigate('#vision')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">Notre vision 2031–2046</button>
-                  <button @click="navigate('#engineers')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">Nos ingénieurs</button>
+                  <button @click="navigate('#about')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">{{ t('nav.about') }}</button>
+                  <button @click="navigate('#vision')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">{{ t('nav.vision') }}</button>
+                  <button @click="navigate('#engineers')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">{{ t('nav.engineers') }}</button>
                 </CollapsibleContent>
               </Collapsible>
 
               <!-- Services -->
               <Collapsible>
                 <CollapsibleTrigger class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">
-                  <span class="flex items-center gap-2"><Code2 class="size-4 text-primary" /> Services</span>
+                  <span class="flex items-center gap-2"><Code2 class="size-4 text-primary" /> {{ t('nav.services') }}</span>
                   <ChevronDown class="size-4 text-muted-foreground" />
                 </CollapsibleTrigger>
                 <CollapsibleContent class="pl-4 flex flex-col gap-1 mt-1">
-                  <button v-for="s in services" :key="s.label" @click="navigate(s.href)"
+                  <button v-for="(icon, i) in serviceIcons" :key="i" @click="navigate(serviceHrefs[i])"
                     class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
-                    <component :is="s.icon" class="size-3.5 text-primary flex-shrink-0" />
-                    {{ s.label }}
+                    <component :is="icon" class="size-3.5 text-primary flex-shrink-0" />
+                    {{ (t('services.items') as any[])[i]?.title }}
                   </button>
                 </CollapsibleContent>
               </Collapsible>
@@ -140,38 +163,38 @@ const navigate = (href: string) => {
               <!-- Nos projets -->
               <Collapsible>
                 <CollapsibleTrigger class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">
-                  <span class="flex items-center gap-2"><Layers class="size-4 text-primary" /> Nos projets</span>
+                  <span class="flex items-center gap-2"><Layers class="size-4 text-primary" /> {{ t('nav.projects') }}</span>
                   <ChevronDown class="size-4 text-muted-foreground" />
                 </CollapsibleTrigger>
                 <CollapsibleContent class="pl-4 flex flex-col gap-1 mt-1">
                   <button @click="navigate('#mstore')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
-                    <Store class="size-3.5 text-primary" /> M-STORE — Aperçu
+                    <Store class="size-3.5 text-primary" /> {{ t('nav.mstoreOverview') }}
                   </button>
                   <button @click="navigate('#modules')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">
-                    29 modules & 92 fonctionnalités
+                    {{ t('nav.modules29') }}
                   </button>
                   <button @click="navigate('/offres')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted">
-                    Nos offres & tarifs
+                    {{ t('nav.offersPage') }}
                   </button>
                   <button @click="navigate('/creer-commerce')" class="text-left px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/10 rounded-md flex items-center gap-2">
-                    <Store class="size-3.5" /> Créer mon commerce
+                    <Store class="size-3.5" /> {{ t('nav.createCommerce') }}
                   </button>
                   <button @click="navigate('/reabonnement')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
-                    <RefreshCw class="size-3.5" /> Renouveler mon abonnement
+                    <RefreshCw class="size-3.5" /> {{ t('nav.renew') }}
                   </button>
                 </CollapsibleContent>
               </Collapsible>
 
               <Separator class="my-1" />
 
-              <button @click="navigate('#pricing')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">Tarifs</button>
-              <button @click="navigate('#vision')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">Vision</button>
-              <button @click="navigate('#devis')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">Devis</button>
-              <button @click="navigate('#contact')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">Contact</button>
+              <button @click="navigate('#pricing')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.pricing') }}</button>
+              <button @click="navigate('#vision')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.visionLink') }}</button>
+              <button @click="navigate('#devis')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.quote') }}</button>
+              <button @click="navigate('#contact')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.contact') }}</button>
 
               <Separator class="my-1" />
               <Button @click="navigate('/creer-commerce')" class="w-full gap-2 mt-2">
-                <Store class="size-4" /> Créer mon commerce
+                <Store class="size-4" /> {{ t('nav.createCommerce') }}
               </Button>
             </div>
           </div>
@@ -190,15 +213,15 @@ const navigate = (href: string) => {
 
         <!-- Qui sommes nous -->
         <NavigationMenuItem>
-          <NavigationMenuTrigger class="bg-card text-sm px-3">Qui sommes nous</NavigationMenuTrigger>
+          <NavigationMenuTrigger class="bg-card text-sm px-3">{{ t('nav.whoWeAre') }}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div class="w-64 p-3 flex flex-col gap-1">
               <NavigationMenuLink as-child>
                 <a href="#about" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted group">
                   <div class="bg-primary/10 p-1.5 rounded-md"><Info class="size-4 text-primary" /></div>
                   <div>
-                    <p class="text-sm font-semibold">À propos</p>
-                    <p class="text-xs text-muted-foreground">Notre mission & valeurs</p>
+                    <p class="text-sm font-semibold">{{ t('nav.about') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.aboutMission') }}</p>
                   </div>
                 </a>
               </NavigationMenuLink>
@@ -206,8 +229,8 @@ const navigate = (href: string) => {
                 <a href="#vision" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
                   <div class="bg-primary/10 p-1.5 rounded-md"><Globe class="size-4 text-primary" /></div>
                   <div>
-                    <p class="text-sm font-semibold">Notre vision</p>
-                    <p class="text-xs text-muted-foreground">RDC → Afrique → Monde</p>
+                    <p class="text-sm font-semibold">{{ t('nav.visionLink') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.visionRdc') }}</p>
                   </div>
                 </a>
               </NavigationMenuLink>
@@ -215,8 +238,8 @@ const navigate = (href: string) => {
                 <a href="#engineers" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
                   <div class="bg-primary/10 p-1.5 rounded-md"><Users class="size-4 text-primary" /></div>
                   <div>
-                    <p class="text-sm font-semibold">Nos ingénieurs</p>
-                    <p class="text-xs text-muted-foreground">6 spécialisations disponibles</p>
+                    <p class="text-sm font-semibold">{{ t('nav.engineers') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.engineers6') }}</p>
                   </div>
                 </a>
               </NavigationMenuLink>
@@ -226,27 +249,27 @@ const navigate = (href: string) => {
 
         <!-- Services -->
         <NavigationMenuItem>
-          <NavigationMenuTrigger class="bg-card text-sm px-3">Services</NavigationMenuTrigger>
+          <NavigationMenuTrigger class="bg-card text-sm px-3">{{ t('nav.services') }}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div class="w-[680px] p-4">
               <div class="grid grid-cols-2 gap-2">
                 <div class="col-span-2 mb-2 px-2">
-                  <p class="text-xs font-semibold text-primary tracking-wider uppercase">13 domaines d'expertise M-HUB</p>
+                  <p class="text-xs font-semibold text-primary tracking-wider uppercase">{{ t('nav.servicesExpertise') }}</p>
                 </div>
                 <NavigationMenuLink
-                  v-for="s in services"
-                  :key="s.label"
+                  v-for="(icon, i) in serviceIcons"
+                  :key="i"
                   as-child
                 >
-                  <a :href="s.href" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted">
-                    <component :is="s.icon" class="size-4 text-primary flex-shrink-0" />
-                    <span class="text-sm font-medium">{{ s.label }}</span>
+                  <a :href="serviceHrefs[i]" class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted">
+                    <component :is="icon" class="size-4 text-primary flex-shrink-0" />
+                    <span class="text-sm font-medium">{{ (t('services.items') as any[])[i]?.title }}</span>
                   </a>
                 </NavigationMenuLink>
               </div>
               <div class="mt-3 pt-3 border-t">
                 <a href="#services" class="text-xs text-primary hover:underline flex items-center gap-1">
-                  Voir tous nos services en détail →
+                  {{ t('nav.seeAllServices') }}
                 </a>
               </div>
             </div>
@@ -255,40 +278,37 @@ const navigate = (href: string) => {
 
         <!-- Nos projets -->
         <NavigationMenuItem>
-          <NavigationMenuTrigger class="bg-card text-sm px-3">Nos projets</NavigationMenuTrigger>
+          <NavigationMenuTrigger class="bg-card text-sm px-3">{{ t('nav.projects') }}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div class="w-[460px] p-4">
-              <!-- M-STORE block -->
               <div class="mb-3">
-                <p class="text-xs font-semibold text-primary tracking-wider uppercase mb-2 px-1">Premier projet M-HUB</p>
+                <p class="text-xs font-semibold text-primary tracking-wider uppercase mb-2 px-1">{{ t('nav.firstProject') }}</p>
                 <div class="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-xl p-4 mb-2">
                   <div class="flex items-center gap-2 mb-2">
                     <Store class="size-5 text-primary" />
                     <span class="font-bold text-lg">M-STORE</span>
-                    <span class="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">En ligne</span>
+                    <span class="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">{{ t('nav.mstoreOnline') }}</span>
                   </div>
-                  <p class="text-xs text-muted-foreground mb-3">
-                    Système de gestion commerciale — 29 modules, 92 fonctionnalités, $2/mois
-                  </p>
+                  <p class="text-xs text-muted-foreground mb-3">{{ t('nav.mstoreDesc') }}</p>
                   <div class="grid grid-cols-2 gap-2">
                     <NavigationMenuLink as-child>
                       <a href="#mstore" class="text-xs flex items-center gap-1.5 p-2 rounded-lg hover:bg-background border border-transparent hover:border-border">
-                        <Layers class="size-3.5 text-primary" /> Aperçu & démo vidéo
+                        <Layers class="size-3.5 text-primary" /> {{ t('nav.preview') }}
                       </a>
                     </NavigationMenuLink>
                     <NavigationMenuLink as-child>
                       <a href="#modules" class="text-xs flex items-center gap-1.5 p-2 rounded-lg hover:bg-background border border-transparent hover:border-border">
-                        <BarChart3 class="size-3.5 text-primary" /> 29 modules
+                        <BarChart3 class="size-3.5 text-primary" /> {{ t('nav.modules29short') }}
                       </a>
                     </NavigationMenuLink>
                     <NavigationMenuLink as-child>
                       <a href="#pricing" class="text-xs flex items-center gap-1.5 p-2 rounded-lg hover:bg-background border border-transparent hover:border-border">
-                        <Settings class="size-3.5 text-primary" /> Tarifs
+                        <Settings class="size-3.5 text-primary" /> {{ t('nav.pricing') }}
                       </a>
                     </NavigationMenuLink>
                     <NavigationMenuLink as-child>
                       <a href="/offres" class="text-xs flex items-center gap-1.5 p-2 rounded-lg hover:bg-background border border-transparent hover:border-border">
-                        <ExternalLink class="size-3.5 text-primary" /> Page complète
+                        <ExternalLink class="size-3.5 text-primary" /> {{ t('nav.fullPage') }}
                       </a>
                     </NavigationMenuLink>
                   </div>
@@ -299,8 +319,8 @@ const navigate = (href: string) => {
                       class="flex items-center gap-2 p-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                       <Store class="size-4" />
                       <div>
-                        <p class="text-xs font-bold">Créer mon commerce</p>
-                        <p class="text-xs opacity-70">Inscription gratuite</p>
+                        <p class="text-xs font-bold">{{ t('nav.createCommerce') }}</p>
+                        <p class="text-xs opacity-70">{{ t('nav.freeRegistration') }}</p>
                       </div>
                     </a>
                   </NavigationMenuLink>
@@ -309,17 +329,15 @@ const navigate = (href: string) => {
                       class="flex items-center gap-2 p-3 rounded-lg border hover:bg-muted transition-colors">
                       <RefreshCw class="size-4 text-primary" />
                       <div>
-                        <p class="text-xs font-bold">Renouveler</p>
-                        <p class="text-xs text-muted-foreground">Mon abonnement</p>
+                        <p class="text-xs font-bold">{{ t('nav.renewLabel') }}</p>
+                        <p class="text-xs text-muted-foreground">{{ t('nav.mySubscription') }}</p>
                       </div>
                     </a>
                   </NavigationMenuLink>
                 </div>
               </div>
               <div class="border-t pt-3">
-                <p class="text-xs text-muted-foreground px-1">
-                  🔮 Prochainement — Module ONG, Application mobile, Paiements Mobile Money…
-                </p>
+                <p class="text-xs text-muted-foreground px-1">{{ t('nav.comingSoon') }}</p>
               </div>
             </div>
           </NavigationMenuContent>
@@ -328,22 +346,22 @@ const navigate = (href: string) => {
         <!-- Liens directs -->
         <NavigationMenuItem>
           <NavigationMenuLink as-child>
-            <a href="#pricing" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">Tarifs</a>
+            <a href="#pricing" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.pricing') }}</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink as-child>
-            <a href="#vision" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">Vision</a>
+            <a href="#vision" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.visionLink') }}</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink as-child>
-            <a href="#devis" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">Devis</a>
+            <a href="#devis" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.quote') }}</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink as-child>
-            <a href="#contact" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">Contact</a>
+            <a href="#contact" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.contact') }}</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
@@ -353,9 +371,25 @@ const navigate = (href: string) => {
     <!-- CTA right -->
     <div class="hidden lg:flex items-center gap-2">
       <ToggleTheme />
+      <!-- Desktop lang switcher -->
+      <div class="relative">
+        <button @click="showLang = !showLang"
+          class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg hover:bg-muted text-sm font-bold border uppercase transition-colors">
+          <Languages class="size-4 text-primary" />
+          {{ locale }}
+        </button>
+        <div v-if="showLang" class="absolute right-0 top-full mt-1 bg-card border rounded-xl shadow-lg z-50 py-1 min-w-[150px]">
+          <button v-for="l in langs" :key="l.code" @click="setLang(l.code)"
+            class="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-muted transition-colors"
+            :class="{ 'text-primary font-semibold': locale === l.code }">
+            <span>{{ l.flag }}</span>
+            <span>{{ l.label }}</span>
+          </button>
+        </div>
+      </div>
       <Button size="sm" @click="router.push('/creer-commerce')" class="gap-1.5">
         <Store class="size-4" />
-        Créer mon commerce
+        {{ t('nav.createCommerce') }}
       </Button>
     </div>
   </header>

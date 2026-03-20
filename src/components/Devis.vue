@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, FileText, CheckCircle2, Loader2 } from "lucide-vue-next";
 import api from "@/services/api";
 
+const { t } = useI18n();
+
 interface DevisFormProps {
   name: string;
   email: string;
@@ -33,7 +36,7 @@ const form = reactive<DevisFormProps>({
   email: "",
   phone: "",
   company: "",
-  projectType: "Développement Web & Mobile",
+  projectType: "ptWeb",
   budget: "",
   timeline: "",
   description: "",
@@ -58,7 +61,7 @@ const handleSubmit = async () => {
       email: form.email,
       phone: form.phone,
       company: form.company,
-      subject: `[Devis] ${form.projectType} — Budget: ${form.budget || 'À définir'} — Délai: ${form.timeline || 'Flexible'}`,
+      subject: `[Devis] ${t('devis.' + form.projectType)} — Budget: ${form.budget ? t('devis.' + form.budget) : '-'} — ${t('devis.timelinePh')}: ${form.timeline ? t('devis.' + form.timeline) : '-'}`,
       message: form.description,
       type: 'devis',
     });
@@ -66,7 +69,7 @@ const handleSubmit = async () => {
     form.name = ""; form.email = ""; form.phone = "";
     form.company = ""; form.description = "";
   } catch (e: any) {
-    errorMsg.value = e?.response?.data?.message || "Erreur lors de l'envoi. Veuillez réessayer.";
+    errorMsg.value = e?.response?.data?.message || t('devis.requiredErrDesc');
   } finally {
     loading.value = false;
   }
@@ -75,67 +78,64 @@ const handleSubmit = async () => {
 
 <template>
   <section id="devis" class="container py-24 sm:py-32">
-    <div class="text-center mb-12">
-      <h2 class="text-lg text-primary mb-2 tracking-wider">Devis</h2>
+    <div v-animate class="text-center mb-12">
+      <h2 class="text-lg text-primary mb-2 tracking-wider">{{ t('devis.label') }}</h2>
       <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
         <FileText class="size-10 text-primary" />
-        Demander un devis
+        {{ t('devis.title') }}
       </h2>
-      <p class="md:w-1/2 mx-auto text-xl text-muted-foreground">
-        Décrivez votre projet et nous vous enverrons une proposition personnalisée
-        sous 24 à 48 heures.
-      </p>
+      <p class="md:w-1/2 mx-auto text-xl text-muted-foreground">{{ t('devis.subtitle') }}</p>
     </div>
 
     <div class="max-w-3xl mx-auto">
-      <Card class="bg-muted/60 dark:bg-card border border-primary/20">
+      <Card v-animate="{ type: 'fade-up', delay: 200 }" class="bg-muted/60 dark:bg-card border border-primary/20">
         <CardHeader class="text-xl font-bold text-primary pb-0">
-          Formulaire de demande de devis
+          {{ t('devis.formTitle') }}
         </CardHeader>
         <CardContent class="pt-6">
           <form @submit.prevent="handleSubmit" class="grid gap-5">
             <div class="grid md:grid-cols-2 gap-4">
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-name">Nom complet <span class="text-destructive">*</span></Label>
-                <Input id="devis-name" placeholder="Votre nom" v-model="form.name" required />
+                <Label for="devis-name">{{ t('devis.fullName') }} <span class="text-destructive">*</span></Label>
+                <Input id="devis-name" :placeholder="t('devis.namePh')" v-model="form.name" required />
               </div>
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-email">Email <span class="text-destructive">*</span></Label>
+                <Label for="devis-email">{{ t('devis.emailLabel') }} <span class="text-destructive">*</span></Label>
                 <Input id="devis-email" type="email" placeholder="votre@email.com" v-model="form.email" required />
               </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-4">
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-phone">Téléphone</Label>
+                <Label for="devis-phone">{{ t('devis.phone') }}</Label>
                 <Input id="devis-phone" placeholder="+243 XXX XXX XXX" v-model="form.phone" />
               </div>
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-company">Entreprise / Organisation</Label>
-                <Input id="devis-company" placeholder="Nom de votre entreprise" v-model="form.company" />
+                <Label for="devis-company">{{ t('devis.company') }}</Label>
+                <Input id="devis-company" :placeholder="t('devis.companyPh')" v-model="form.company" />
               </div>
             </div>
 
             <div class="flex flex-col gap-1.5">
-              <Label for="devis-type">Type de projet</Label>
+              <Label for="devis-type">{{ t('devis.projectType') }}</Label>
               <Select v-model="form.projectType">
                 <SelectTrigger>
-                  <SelectValue placeholder="Sélectionnez un type de projet" />
+                  <SelectValue :placeholder="t('devis.projectTypePh')" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="Développement Web & Mobile">Développement Web & Mobile</SelectItem>
-                    <SelectItem value="M-STORE Commercial">M-STORE — Commerce / PME</SelectItem>
-                    <SelectItem value="M-STORE ONG">M-STORE — ONG / Organisation</SelectItem>
-                    <SelectItem value="Intelligence Artificielle">Intelligence Artificielle & ML</SelectItem>
-                    <SelectItem value="Cybersécurité & Réseaux">Cybersécurité & Réseaux</SelectItem>
-                    <SelectItem value="Cloud & DevOps">Cloud & DevOps</SelectItem>
-                    <SelectItem value="Data & Analytics">Data & Analytics</SelectItem>
-                    <SelectItem value="Blockchain & Web3">Blockchain & Web3</SelectItem>
-                    <SelectItem value="Production Vidéo">Production Vidéo 2D/3D</SelectItem>
-                    <SelectItem value="Marketing Digital">Marketing Digital</SelectItem>
-                    <SelectItem value="Ingénieur dédié">Engager un ingénieur M-HUB</SelectItem>
-                    <SelectItem value="Autre">Autre</SelectItem>
+                    <SelectItem value="ptWeb">{{ t('devis.ptWeb') }}</SelectItem>
+                    <SelectItem value="ptMstoreComm">{{ t('devis.ptMstoreComm') }}</SelectItem>
+                    <SelectItem value="ptMstoreOng">{{ t('devis.ptMstoreOng') }}</SelectItem>
+                    <SelectItem value="ptAI">{{ t('devis.ptAI') }}</SelectItem>
+                    <SelectItem value="ptCyber">{{ t('devis.ptCyber') }}</SelectItem>
+                    <SelectItem value="ptCloud">{{ t('devis.ptCloud') }}</SelectItem>
+                    <SelectItem value="ptData">{{ t('devis.ptData') }}</SelectItem>
+                    <SelectItem value="ptBlockchain">{{ t('devis.ptBlockchain') }}</SelectItem>
+                    <SelectItem value="ptVideo">{{ t('devis.ptVideo') }}</SelectItem>
+                    <SelectItem value="ptMarketing">{{ t('devis.ptMarketing') }}</SelectItem>
+                    <SelectItem value="ptEngineer">{{ t('devis.ptEngineer') }}</SelectItem>
+                    <SelectItem value="ptOther">{{ t('devis.ptOther') }}</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -143,37 +143,37 @@ const handleSubmit = async () => {
 
             <div class="grid md:grid-cols-2 gap-4">
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-budget">Budget estimé (USD)</Label>
+                <Label for="devis-budget">{{ t('devis.budget') }}</Label>
                 <Select v-model="form.budget">
                   <SelectTrigger>
-                    <SelectValue placeholder="Fourchette de budget" />
+                    <SelectValue :placeholder="t('devis.budgetPh')" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="< $500">Moins de $500</SelectItem>
-                      <SelectItem value="$500 - $2000">$500 — $2 000</SelectItem>
-                      <SelectItem value="$2000 - $5000">$2 000 — $5 000</SelectItem>
-                      <SelectItem value="$5000 - $10000">$5 000 — $10 000</SelectItem>
-                      <SelectItem value="> $10000">Plus de $10 000</SelectItem>
-                      <SelectItem value="À définir">À définir ensemble</SelectItem>
+                      <SelectItem value="bLt500">{{ t('devis.bLt500') }}</SelectItem>
+                      <SelectItem value="b500_2k">{{ t('devis.b500_2k') }}</SelectItem>
+                      <SelectItem value="b2k_5k">{{ t('devis.b2k_5k') }}</SelectItem>
+                      <SelectItem value="b5k_10k">{{ t('devis.b5k_10k') }}</SelectItem>
+                      <SelectItem value="bGt10k">{{ t('devis.bGt10k') }}</SelectItem>
+                      <SelectItem value="bTbd">{{ t('devis.bTbd') }}</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
               <div class="flex flex-col gap-1.5">
-                <Label for="devis-timeline">Délai souhaité</Label>
+                <Label for="devis-timeline">{{ t('devis.timeline') }}</Label>
                 <Select v-model="form.timeline">
                   <SelectTrigger>
-                    <SelectValue placeholder="Délai de livraison" />
+                    <SelectValue :placeholder="t('devis.timelinePh')" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="Urgent (< 2 semaines)">Urgent — moins de 2 semaines</SelectItem>
-                      <SelectItem value="1 mois">1 mois</SelectItem>
-                      <SelectItem value="2-3 mois">2 à 3 mois</SelectItem>
-                      <SelectItem value="3-6 mois">3 à 6 mois</SelectItem>
-                      <SelectItem value="> 6 mois">Plus de 6 mois</SelectItem>
-                      <SelectItem value="Flexible">Flexible</SelectItem>
+                      <SelectItem value="tUrgent">{{ t('devis.tUrgent') }}</SelectItem>
+                      <SelectItem value="t1m">{{ t('devis.t1m') }}</SelectItem>
+                      <SelectItem value="t2_3m">{{ t('devis.t2_3m') }}</SelectItem>
+                      <SelectItem value="t3_6m">{{ t('devis.t3_6m') }}</SelectItem>
+                      <SelectItem value="tGt6">{{ t('devis.tGt6') }}</SelectItem>
+                      <SelectItem value="tFlexible">{{ t('devis.tFlexible') }}</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -181,10 +181,10 @@ const handleSubmit = async () => {
             </div>
 
             <div class="flex flex-col gap-1.5">
-              <Label for="devis-desc">Description du projet <span class="text-destructive">*</span></Label>
+              <Label for="devis-desc">{{ t('devis.description') }} <span class="text-destructive">*</span></Label>
               <Textarea
                 id="devis-desc"
-                placeholder="Décrivez votre projet, vos besoins, les fonctionnalités souhaitées..."
+                :placeholder="t('devis.descriptionPh')"
                 :rows="6"
                 v-model="form.description"
                 required
@@ -193,30 +193,26 @@ const handleSubmit = async () => {
 
             <Alert v-if="error" variant="destructive">
               <AlertCircle class="w-4 h-4" />
-              <AlertTitle>Champs requis manquants</AlertTitle>
-              <AlertDescription>
-                Veuillez renseigner votre nom, email et la description du projet.
-              </AlertDescription>
+              <AlertTitle>{{ t('devis.requiredErr') }}</AlertTitle>
+              <AlertDescription>{{ t('devis.requiredErrDesc') }}</AlertDescription>
             </Alert>
 
             <Alert v-if="sent" class="border-primary/30 bg-primary/5">
               <CheckCircle2 class="w-4 h-4 text-primary" />
-              <AlertTitle class="text-primary">Demande envoyée !</AlertTitle>
-              <AlertDescription>
-                Nous avons bien reçu votre demande de devis. Notre équipe vous répondra sous 24-48h.
-              </AlertDescription>
+              <AlertTitle class="text-primary">{{ t('devis.successTitle') }}</AlertTitle>
+              <AlertDescription>{{ t('devis.successDesc') }}</AlertDescription>
             </Alert>
 
             <Alert v-if="errorMsg" variant="destructive">
               <AlertCircle class="w-4 h-4" />
-              <AlertTitle>Erreur</AlertTitle>
+              <AlertTitle>{{ t('devis.errorTitle') }}</AlertTitle>
               <AlertDescription>{{ errorMsg }}</AlertDescription>
             </Alert>
 
             <Button type="submit" class="w-full font-bold text-base py-6" :disabled="loading">
               <Loader2 v-if="loading" class="size-5 mr-2 animate-spin" />
               <FileText v-else class="size-5 mr-2" />
-              {{ loading ? 'Envoi en cours...' : 'Envoyer ma demande de devis' }}
+              {{ loading ? t('devis.sending') : t('devis.sendBtn') }}
             </Button>
           </form>
         </CardContent>
