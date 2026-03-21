@@ -1,9 +1,34 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Flag, Globe, Star } from "lucide-vue-next";
+import { MapPin, Globe, Globe2 } from "lucide-vue-next";
 
 const { t } = useI18n();
+
+const cards = [
+  {
+    icon: MapPin,
+    color: "primary",
+    accentClass: "bg-primary/20 text-primary border-primary/30 hover:border-primary",
+    yearClass: "text-primary",
+    key: "card1",
+  },
+  {
+    icon: Globe,
+    color: "fuchsia",
+    accentClass: "bg-[#D247BF]/20 text-[#D247BF] border-[#D247BF]/30 hover:border-[#D247BF]",
+    yearClass: "text-[#D247BF]",
+    key: "card2",
+    featured: true,
+  },
+  {
+    icon: Globe2,
+    color: "primary",
+    accentClass: "bg-primary/20 text-primary border-primary/30 hover:border-primary",
+    yearClass: "text-primary",
+    key: "card3",
+  },
+];
 </script>
 
 <template>
@@ -20,45 +45,37 @@ const { t } = useI18n();
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 lg:w-[85%] mx-auto">
-        <Card v-animate="{ type: 'zoom-in', delay: 0 }" class="text-center border-primary/30 hover:border-primary transition-colors">
+        <Card
+          v-for="(card, i) in cards"
+          :key="card.key"
+          v-animate="{ type: 'zoom-in', delay: i * 150 }"
+          :class="[
+            'text-center border transition-all duration-300',
+            card.accentClass,
+            card.featured ? 'scale-105 shadow-xl' : '',
+          ]"
+        >
           <CardHeader>
-            <div class="flex justify-center mb-4">
-              <div class="bg-primary/20 p-4 rounded-full"><Flag class="w-8 h-8 text-primary" /></div>
+            <div class="flex justify-center mb-5">
+              <div
+                :class="[
+                  'p-5 rounded-2xl ring-4 ring-offset-2 ring-offset-background',
+                  card.featured
+                    ? 'bg-[#D247BF]/20 ring-[#D247BF]/20'
+                    : 'bg-primary/15 ring-primary/10',
+                ]"
+              >
+                <component
+                  :is="card.icon"
+                  :class="['w-10 h-10', card.featured ? 'text-[#D247BF]' : 'text-primary']"
+                />
+              </div>
             </div>
-            <div class="text-4xl mb-2">🇨🇩</div>
-            <CardTitle class="text-2xl">{{ t('vision.card1.title') }}</CardTitle>
+            <CardTitle class="text-2xl">{{ t(`vision.${card.key}.title`) }}</CardTitle>
           </CardHeader>
           <CardContent class="text-muted-foreground">
-            <div class="text-primary font-bold text-lg mb-2">{{ t('vision.card1.year') }}</div>
-            {{ t('vision.card1.text') }}
-          </CardContent>
-        </Card>
-
-        <Card v-animate="{ type: 'zoom-in', delay: 150 }" class="text-center border-[#D247BF]/30 hover:border-[#D247BF] transition-colors scale-105 shadow-lg">
-          <CardHeader>
-            <div class="flex justify-center mb-4">
-              <div class="bg-[#D247BF]/20 p-4 rounded-full"><Globe class="w-8 h-8 text-[#D247BF]" /></div>
-            </div>
-            <div class="text-4xl mb-2">🌍</div>
-            <CardTitle class="text-2xl">{{ t('vision.card2.title') }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-muted-foreground">
-            <div class="text-[#D247BF] font-bold text-lg mb-2">{{ t('vision.card2.year') }}</div>
-            {{ t('vision.card2.text') }}
-          </CardContent>
-        </Card>
-
-        <Card v-animate="{ type: 'zoom-in', delay: 300 }" class="text-center border-primary/30 hover:border-primary transition-colors">
-          <CardHeader>
-            <div class="flex justify-center mb-4">
-              <div class="bg-primary/20 p-4 rounded-full"><Star class="w-8 h-8 text-primary" /></div>
-            </div>
-            <div class="text-4xl mb-2">🌐</div>
-            <CardTitle class="text-2xl">{{ t('vision.card3.title') }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-muted-foreground">
-            <div class="text-primary font-bold text-lg mb-2">{{ t('vision.card3.year') }}</div>
-            {{ t('vision.card3.text') }}
+            <div :class="['font-bold text-lg mb-2', card.yearClass]">{{ t(`vision.${card.key}.year`) }}</div>
+            {{ t(`vision.${card.key}.text`) }}
           </CardContent>
         </Card>
       </div>

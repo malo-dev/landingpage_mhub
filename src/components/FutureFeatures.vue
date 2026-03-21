@@ -3,8 +3,14 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  ScanLine, Megaphone, Bot, TrendingUp,
+  Smartphone, CreditCard, Languages, Plug,
+} from "lucide-vue-next";
 
 const { t, tm } = useI18n();
+
+const futureIcons = [ScanLine, Megaphone, Bot, TrendingUp, Smartphone, CreditCard, Languages, Plug];
 
 const futureList = computed(() => tm('future.items') as any[]);
 </script>
@@ -23,14 +29,16 @@ const futureList = computed(() => tm('future.items') as any[]);
         v-for="(feat, index) in futureList"
         v-animate="{ type: 'fade-up', delay: (index % 4) * 80 }"
         :key="index"
-        class="bg-muted/40 dark:bg-card border border-primary/10 hover:border-primary/40 transition-colors group"
+        class="bg-muted/40 dark:bg-card border border-primary/10 hover:border-primary/40 hover:shadow-md transition-all duration-300 group"
       >
         <CardHeader>
-          <div class="flex items-start justify-between mb-2">
-            <span class="text-3xl">{{ feat.icon }}</span>
+          <div class="flex items-start justify-between mb-3">
+            <div class="bg-primary/10 p-2.5 rounded-xl ring-4 ring-primary/5 group-hover:bg-primary/20 transition-colors duration-300">
+              <component :is="futureIcons[index]" class="size-5 text-primary" />
+            </div>
             <Badge variant="outline" class="text-xs border-primary/30 text-primary">{{ t('future.soon') }}</Badge>
           </div>
-          <CardTitle class="text-base leading-tight group-hover:text-primary transition-colors">
+          <CardTitle class="text-base leading-tight group-hover:text-primary transition-colors duration-200">
             {{ feat.title }}
           </CardTitle>
         </CardHeader>

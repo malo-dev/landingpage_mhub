@@ -4,11 +4,11 @@ import { useI18n } from "vue-i18n";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-vue-next";
+import { Check, Monitor, Bot, Shield, Palette, BarChart3, Video } from "lucide-vue-next";
 
 const { t, tm } = useI18n();
 
-const icons = ["💻", "🤖", "🔐", "🎨", "📊", "🎬"];
+const icons = [Monitor, Bot, Shield, Palette, BarChart3, Video];
 const popularIndex = 1;
 
 const profiles = computed(() =>
@@ -38,14 +38,29 @@ const profiles = computed(() =>
         v-for="({ icon, title, skills, popular }, index) in profiles"
         v-animate="{ type: 'fade-up', delay: (index % 3) * 120 }"
         :key="index"
-        :class="{ 'drop-shadow-xl shadow-black/10 dark:shadow-primary/20 border-[1.5px] border-primary lg:scale-[1.05]': popular }"
-        class="relative"
+        :class="[
+          'relative transition-all duration-300 hover:shadow-lg',
+          popular
+            ? 'drop-shadow-xl shadow-black/10 dark:shadow-primary/20 border-[1.5px] border-primary lg:scale-[1.05]'
+            : 'hover:border-primary/30',
+        ]"
       >
         <Badge v-if="popular" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
           {{ t('engineers.popular') }}
         </Badge>
         <CardHeader>
-          <div class="text-4xl mb-2">{{ icon }}</div>
+          <div class="mb-3">
+            <div
+              :class="[
+                'inline-flex p-3 rounded-xl ring-4',
+                popular
+                  ? 'bg-primary/20 ring-primary/10'
+                  : 'bg-muted ring-muted',
+              ]"
+            >
+              <component :is="icon" :class="['size-7', popular ? 'text-primary' : 'text-muted-foreground']" />
+            </div>
+          </div>
           <CardTitle class="text-xl">{{ title }}</CardTitle>
           <CardDescription>{{ t('engineers.specialized') }}</CardDescription>
         </CardHeader>
@@ -59,7 +74,7 @@ const profiles = computed(() =>
         </CardContent>
         <CardFooter>
           <Button :variant="popular ? 'default' : 'secondary'" class="w-full" as-child>
-            <a href="#contact">{{ t('engineers.contactBtn') }}</a>
+            <a href="/contact">{{ t('engineers.contactBtn') }}</a>
           </Button>
         </CardFooter>
       </Card>

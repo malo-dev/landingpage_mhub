@@ -30,13 +30,12 @@ import {
   Menu, Zap, Store, RefreshCw, ChevronDown,
   Info, Globe, Users, Code2, Bot, Shield, Cloud,
   BarChart3, Video, Lock, Link, Settings, Megaphone,
-  Wifi, Layers, ExternalLink, Languages,
+  Wifi, Layers, ExternalLink, Languages, Briefcase, Mail,
 } from "lucide-vue-next";
 import ToggleTheme from "./ToggleTheme.vue";
 
 const { t, tm, locale } = useI18n();
 const mode = useColorMode();
-mode.value = "dark";
 const router = useRouter();
 const isOpen = ref(false);
 const showLang = ref(false);
@@ -179,12 +178,27 @@ const navigate = (href: string) => {
                 </CollapsibleContent>
               </Collapsible>
 
+              <!-- Carrières -->
+              <Collapsible>
+                <CollapsibleTrigger class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">
+                  <span class="flex items-center gap-2"><Briefcase class="size-4 text-primary" /> {{ t('nav.careers') }}</span>
+                  <ChevronDown class="size-4 text-muted-foreground" />
+                </CollapsibleTrigger>
+                <CollapsibleContent class="pl-4 flex flex-col gap-1 mt-1">
+                  <button @click="navigate('/carrieres')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <Briefcase class="size-3.5 text-primary" /> {{ t('nav.allOffers') }}
+                  </button>
+                  <button @click="navigate('/contact')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <Mail class="size-3.5 text-primary" /> {{ t('nav.contact') }}
+                  </button>
+                </CollapsibleContent>
+              </Collapsible>
+
               <Separator class="my-1" />
 
               <button @click="navigate('#pricing')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.pricing') }}</button>
               <button @click="navigate('#vision')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.visionLink') }}</button>
               <button @click="navigate('#devis')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.quote') }}</button>
-              <button @click="navigate('#contact')" class="text-left px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">{{ t('nav.contact') }}</button>
 
               <Separator class="my-1" />
               <Button @click="navigate('/creer-commerce')" class="w-full gap-2 mt-2">
@@ -353,10 +367,36 @@ const navigate = (href: string) => {
             <a href="#devis" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.quote') }}</a>
           </NavigationMenuLink>
         </NavigationMenuItem>
+
+        <!-- Carrières -->
         <NavigationMenuItem>
-          <NavigationMenuLink as-child>
-            <a href="#contact" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.contact') }}</a>
-          </NavigationMenuLink>
+          <NavigationMenuTrigger class="bg-card text-sm px-3">
+            <Briefcase class="size-3.5 mr-1.5 text-primary" />
+            {{ t('nav.careers') }}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div class="w-72 p-3 flex flex-col gap-1">
+              <p class="text-xs font-semibold text-primary tracking-wider uppercase px-2 mb-2">{{ t('nav.careersTitle') }}</p>
+              <NavigationMenuLink as-child>
+                <a href="/carrieres" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><Briefcase class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.allOffers') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.allOffersDesc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+              <NavigationMenuLink as-child>
+                <a href="/contact" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><Mail class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.contact') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.contactDesc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
         </NavigationMenuItem>
 
       </NavigationMenuList>
