@@ -228,7 +228,7 @@ export default {
     phone: "Teléfono",
     phoneValue: "+243 972 258 637",
     email: "Correo electrónico",
-    emailValue: "contact@m-nethub.tech",
+    emailValue: "contact{'@'}m-nethub.tech",
     availability: "Disponibilidad",
     availHours: "Lunes — Viernes: 8h — 18h",
     availUrgency: "Soporte urgencias 24/7",
