@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Fond arrondi sombre -->
+  <rect width="64" height="64" rx="12" fill="#0b1628"/>
+  <!-- Carré M bleu -->
+  <rect x="4" y="8" width="28" height="48" rx="4" fill="#29B6E8"/>
+  <!-- Découpe intérieure M gauche -->
+  <rect x="10" y="8" width="8" height="28" fill="#0b1628"/>
+  <!-- Découpe intérieure M droite -->
+  <rect x="22" y="8" width="8" height="28" fill="#0b1628"/>
+  <!-- Pic du M -->
+  <polygon points="18,8 22,22 26,8" fill="#29B6E8"/>
+  <!-- Découpe bas du M (arche) -->
+  <ellipse cx="18" cy="54" rx="10" ry="8" fill="#0b1628"/>
+  <!-- Nœud réseau central -->
+  <circle cx="16" cy="20" r="3.5" fill="#94a3b8"/>
+  <!-- Nœuds satellites -->
+  <circle cx="8" cy="13" r="2.5" fill="#94a3b8"/>
+  <circle cx="24" cy="13" r="2.5" fill="#94a3b8"/>
+  <circle cx="7" cy="25" r="2" fill="#94a3b8"/>
+  <!-- Lignes réseau -->
+  <line x1="16" y1="20" x2="8" y2="13" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="16" y1="20" x2="24" y2="13" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="16" y1="20" x2="7" y2="25" stroke="#94a3b8" stroke-width="1.2"/>
+  <!-- HUB texte simplifié comme bloc bleu -->
+  <rect x="34" y="28" width="26" height="20" rx="4" fill="#29B6E8"/>
+  <text x="47" y="43" font-family="Arial" font-size="14" font-weight="900" fill="#0b1628" text-anchor="middle">HUB</text>
+  <!-- NET petit -->
+  <text x="47" y="26" font-family="Arial" font-size="9" font-weight="900" fill="#29B6E8" text-anchor="middle">NET</text>
+</svg>

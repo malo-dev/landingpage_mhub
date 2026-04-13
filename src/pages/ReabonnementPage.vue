@@ -76,7 +76,7 @@ const confirm = () => {
     return;
   }
   if (!selected.value?.subscription?.renewToken) {
-    confirmError.value = "Aucun lien de renouvellement disponible pour ce commerce. Contactez M-HUB.";
+    confirmError.value = "Aucun lien de renouvellement disponible pour ce commerce. Contactez M-NETHUB.";
     return;
   }
   router.push(`/abonnement/${selected.value.subscription.renewToken}`);
@@ -105,7 +105,7 @@ const statusVariant = (status: string) => {
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
           <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
-            M-HUB
+            M-NETHUB
           </span>
         </a>
         <Button variant="ghost" @click="router.push('/')" class="gap-2">

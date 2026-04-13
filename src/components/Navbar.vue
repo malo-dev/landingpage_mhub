@@ -26,11 +26,13 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import logoMnethub from "@/assets/logo-mnethub.svg";
 import {
-  Menu, Zap, Store, RefreshCw, ChevronDown,
+  Menu, Store, RefreshCw, ChevronDown,
   Info, Globe, Users, Code2, Bot, Shield, Cloud,
   BarChart3, Video, Lock, Link, Settings, Megaphone,
-  Wifi, Layers, ExternalLink, Languages, Briefcase, Mail,
+  Wifi, Layers, ExternalLink, Languages, Briefcase, Mail, FileText,
+  BookOpen, Target, DollarSign, ClipboardList,
 } from "lucide-vue-next";
 import ToggleTheme from "./ToggleTheme.vue";
 
@@ -80,12 +82,7 @@ const navigate = (href: string) => {
   >
     <!-- Logo -->
     <a href="/" class="font-bold text-lg flex items-center flex-shrink-0">
-      <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border flex items-center justify-center">
-        <Zap class="w-5 h-5 text-primary-foreground" />
-      </div>
-      <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
-        M-HUB
-      </span>
+      <img :src="logoMnethub" alt="M-NETHUB" class="h-9 w-auto" />
     </a>
 
     <!-- ───── Mobile ───── -->
@@ -115,10 +112,7 @@ const navigate = (href: string) => {
             <SheetHeader class="mb-4 ml-4">
               <SheetTitle class="flex items-center">
                 <a href="/" class="flex items-center" @click="isOpen = false">
-                  <div class="bg-gradient-to-tr from-primary/70 via-primary to-primary/70 rounded-lg size-9 mr-2 border flex items-center justify-center">
-                    <Zap class="w-5 h-5 text-primary-foreground" />
-                  </div>
-                  <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">M-HUB</span>
+                  <img :src="logoMnethub" alt="M-NETHUB" class="h-8 w-auto" />
                 </a>
               </SheetTitle>
             </SheetHeader>
@@ -174,6 +168,28 @@ const navigate = (href: string) => {
                   </button>
                   <button @click="navigate('/reabonnement')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
                     <RefreshCw class="size-3.5" /> {{ t('nav.renew') }}
+                  </button>
+                </CollapsibleContent>
+              </Collapsible>
+
+              <!-- Pages -->
+              <Collapsible>
+                <CollapsibleTrigger class="flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg hover:bg-muted">
+                  <span class="flex items-center gap-2"><BookOpen class="size-4 text-primary" /> {{ t('nav.pages') }}</span>
+                  <ChevronDown class="size-4 text-muted-foreground" />
+                </CollapsibleTrigger>
+                <CollapsibleContent class="pl-4 flex flex-col gap-1 mt-1">
+                  <button @click="navigate('/politique-confidentialite')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <FileText class="size-3.5 text-primary" /> {{ t('nav.privacy') }}
+                  </button>
+                  <button @click="navigate('#vision')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <Target class="size-3.5 text-primary" /> {{ t('nav.visionLink') }}
+                  </button>
+                  <button @click="navigate('#pricing')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <DollarSign class="size-3.5 text-primary" /> {{ t('nav.pricing') }}
+                  </button>
+                  <button @click="navigate('#devis')" class="text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-md hover:bg-muted flex items-center gap-2">
+                    <ClipboardList class="size-3.5 text-primary" /> {{ t('nav.quote') }}
                   </button>
                 </CollapsibleContent>
               </Collapsible>
@@ -351,21 +367,57 @@ const navigate = (href: string) => {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <!-- Liens directs -->
+        <!-- Pages -->
         <NavigationMenuItem>
-          <NavigationMenuLink as-child>
-            <a href="#pricing" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.pricing') }}</a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink as-child>
-            <a href="#vision" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.visionLink') }}</a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink as-child>
-            <a href="#devis" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-muted transition-colors">{{ t('nav.quote') }}</a>
-          </NavigationMenuLink>
+          <NavigationMenuTrigger class="bg-card text-sm px-3">
+            <BookOpen class="size-3.5 mr-1.5 text-primary" />
+            {{ t('nav.pages') }}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div class="w-72 p-3 flex flex-col gap-1">
+              <p class="text-xs font-semibold text-primary tracking-wider uppercase px-2 mb-2">{{ t('nav.pagesTitle') }}</p>
+
+              <NavigationMenuLink as-child>
+                <a href="/politique-confidentialite" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><FileText class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.privacy') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.privacyDesc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+
+              <NavigationMenuLink as-child>
+                <a href="#vision" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><Target class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.visionLink') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.visionRdc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+
+              <NavigationMenuLink as-child>
+                <a href="#pricing" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><DollarSign class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.pricing') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.pricingDesc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+
+              <NavigationMenuLink as-child>
+                <a href="#devis" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted">
+                  <div class="bg-primary/10 p-1.5 rounded-md"><ClipboardList class="size-4 text-primary" /></div>
+                  <div>
+                    <p class="text-sm font-semibold">{{ t('nav.quote') }}</p>
+                    <p class="text-xs text-muted-foreground">{{ t('nav.quoteDesc') }}</p>
+                  </div>
+                </a>
+              </NavigationMenuLink>
+            </div>
+          </NavigationMenuContent>
         </NavigationMenuItem>
 
         <!-- Carrières -->

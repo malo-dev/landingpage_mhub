@@ -6,6 +6,7 @@ import AbonnementPage from '@/pages/AbonnementPage.vue';
 import OffresPage from '@/pages/OffresPage.vue';
 import ContactPage from '@/pages/ContactPage.vue';
 import CarrieresPage from '@/pages/CarrieresPage.vue';
+import PolitiqueConfidentialitePage from '@/pages/PolitiqueConfidentialitePage.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,13 +15,14 @@ const router = createRouter({
     return { top: 0 };
   },
   routes: [
-    { path: '/',                     component: LandingPage },
-    { path: '/creer-commerce',       component: RegisterCommercePage },
-    { path: '/reabonnement',         component: ReabonnementPage },
-    { path: '/abonnement/:token',    component: AbonnementPage },
-    { path: '/offres',               component: OffresPage },
-    { path: '/contact',              component: ContactPage },
-    { path: '/carrieres',            component: CarrieresPage },
+    { path: '/',                              component: LandingPage },
+    { path: '/creer-commerce',               component: RegisterCommercePage },
+    { path: '/reabonnement',                 component: ReabonnementPage },
+    { path: '/abonnement/:token',            component: AbonnementPage },
+    { path: '/offres',                       component: OffresPage },
+    { path: '/contact',                      component: ContactPage },
+    { path: '/carrieres',                    component: CarrieresPage },
+    { path: '/politique-confidentialite',    component: PolitiqueConfidentialitePage },
   ],
 });
 

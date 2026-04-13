@@ -10,7 +10,7 @@ import demoVideo from "@/assets/demo_mhub.mp4";
     <div v-animate class="text-center mb-12">
       <Badge variant="outline" class="text-sm py-2 mb-4">
         <span class="mr-2 text-primary"><Badge>Premier projet</Badge></span>
-        <span>M-HUB lance M-STORE</span>
+        <span>M-NETHUB lance M-STORE</span>
       </Badge>
 
       <h2 class="text-lg text-primary mb-2 tracking-wider">M-STORE</h2>
@@ -23,7 +23,7 @@ import demoVideo from "@/assets/demo_mhub.mp4";
       </h2>
 
       <p class="md:w-2/3 mx-auto text-xl text-muted-foreground mb-8">
-        M-STORE est le premier projet phare de M-HUB — une plateforme complète de gestion
+        M-STORE est le premier projet phare de M-NETHUB — une plateforme complète de gestion
         commerciale avec 29 modules et 92 fonctionnalités pour les PME, magasins et organisations.
       </p>
 

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" fill="none">
+  <!-- M letter shape (blue) -->
+  <rect x="10" y="10" width="140" height="160" rx="8" fill="#29B6E8"/>
+  <!-- M inner cutout (white arch at bottom) -->
+  <ellipse cx="80" cy="165" rx="42" ry="30" fill="white"/>
+  <!-- M top cutout (for the M legs) -->
+  <rect x="30" y="10" width="30" height="90" fill="white"/>
+  <rect x="90" y="10" width="30" height="90" fill="white"/>
+  <!-- Triangle peak of M -->
+  <polygon points="60,10 80,55 100,10" fill="#29B6E8"/>
+
+  <!-- Network icon in upper-left of M (gray nodes) -->
+  <!-- Center node -->
+  <circle cx="72" cy="52" r="10" fill="#B0B8C8"/>
+  <!-- Surrounding nodes -->
+  <circle cx="45" cy="30" r="7" fill="#B0B8C8"/>
+  <circle cx="99" cy="30" r="7" fill="#B0B8C8"/>
+  <circle cx="38" cy="65" r="6" fill="#B0B8C8"/>
+  <circle cx="52" cy="85" r="5" fill="#B0B8C8"/>
+  <circle cx="95" cy="75" r="5" fill="#B0B8C8"/>
+  <!-- Lines connecting nodes -->
+  <line x1="72" y1="52" x2="45" y2="30" stroke="#B0B8C8" stroke-width="2.5"/>
+  <line x1="72" y1="52" x2="99" y2="30" stroke="#B0B8C8" stroke-width="2.5"/>
+  <line x1="72" y1="52" x2="38" y2="65" stroke="#B0B8C8" stroke-width="2.5"/>
+  <line x1="72" y1="52" x2="52" y2="85" stroke="#B0B8C8" stroke-width="2.5"/>
+  <line x1="72" y1="52" x2="95" y2="75" stroke="#B0B8C8" stroke-width="2.5"/>
+
+  <!-- NET text -->
+  <text x="168" y="115" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#29B6E8" letter-spacing="-1">NET</text>
+
+  <!-- HUB big letters -->
+  <text x="268" y="155" font-family="Arial, Helvetica, sans-serif" font-size="128" font-weight="900" fill="#29B6E8" letter-spacing="-4">HUB</text>
+
+  <!-- Small leaf/teardrop inside H of HUB -->
+  <ellipse cx="334" cy="132" rx="16" ry="22" fill="#B0B8C8" transform="rotate(-20 334 132)"/>
+</svg>

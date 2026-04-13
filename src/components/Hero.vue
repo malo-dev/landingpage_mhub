@@ -21,7 +21,7 @@ const { t } = useI18n();
 
         <div v-animate="{ delay: 150 }" class="max-w-screen-md mx-auto text-center text-5xl md:text-6xl font-bold">
           <h1>
-            <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">M-HUB</span>
+            <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">M-NETHUB</span>
             <br />
             {{ t('hero.title') }}
           </h1>
@@ -54,7 +54,7 @@ const { t } = useI18n();
         <img
           class="w-full md:w-[1200px] mx-auto rounded-lg relative leading-none flex items-center border border-t-2 border-t-primary/30 img-border-animation"
           :src="screenshot1"
-          alt="M-HUB M-STORE Dashboard"
+          alt="M-NETHUB M-STORE Dashboard"
         />
         <div class="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
       </div>

@@ -36,7 +36,7 @@ const highlights = [
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
           <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
-            M-HUB
+            M-NETHUB
           </span>
         </a>
         <div class="flex items-center gap-3">
@@ -63,7 +63,7 @@ const highlights = [
           <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">M-STORE</span>
         </h1>
         <p class="text-xl text-muted-foreground mb-8">
-          Le premier projet M-HUB — un système de gestion commerciale complet avec 29 modules
+          Le premier projet M-NETHUB — un système de gestion commerciale complet avec 29 modules
           et 92 fonctionnalités pour PME, magasins et organisations.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
@@ -203,7 +203,7 @@ const highlights = [
     <!-- Footer simple -->
     <footer class="border-t py-8 text-center text-sm text-muted-foreground">
       <div class="container">
-        © 2025 M-HUB — Full Stack IT Company · Kinshasa, RDC
+        © 2025 M-NETHUB — Full Stack IT Company · Kinshasa, RDC
         <span class="mx-3">·</span>
         <a href="/" class="hover:text-primary">Retour à l'accueil</a>
       </div>

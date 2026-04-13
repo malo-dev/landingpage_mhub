@@ -73,7 +73,7 @@ const fmtDate = (d: string) =>
           <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">M-HUB</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">M-NETHUB</span>
         </a>
         <Button variant="ghost" @click="router.push('/')" class="gap-2">
           <ArrowLeft class="size-4" />
@@ -88,7 +88,7 @@ const fmtDate = (d: string) =>
         <Badge variant="outline" class="mb-4">{{ t('careers.badge') }}</Badge>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ t('careers.title') }}
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text"> M-HUB</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text"> M-NETHUB</span>
         </h1>
         <p class="text-xl text-muted-foreground mb-8">{{ t('careers.subtitle') }}</p>
 
@@ -249,7 +249,7 @@ const fmtDate = (d: string) =>
 
     <footer class="border-t py-8 text-center text-sm text-muted-foreground">
       <div class="container">
-        © 2025 M-HUB — Full Stack IT Company · Kinshasa, RDC
+        © 2025 M-NETHUB — Full Stack IT Company · Kinshasa, RDC
         <span class="mx-3">·</span>
         <a href="/" class="hover:text-primary">{{ t('nav.backHome') }}</a>
       </div>

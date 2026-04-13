@@ -39,7 +39,7 @@ const cards = [
         <h2 class="text-lg text-primary mb-2 tracking-wider">{{ t('vision.label') }}</h2>
         <h2 class="text-3xl md:text-4xl font-bold mb-4">
           {{ t('vision.title') }}
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text"> M-HUB</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text"> M-NETHUB</span>
         </h2>
         <p class="md:w-1/2 mx-auto text-xl text-muted-foreground">{{ t('vision.subtitle') }}</p>
       </div>

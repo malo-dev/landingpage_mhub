@@ -17,7 +17,7 @@ const { t } = useI18n();
           <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">M-HUB</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">M-NETHUB</span>
         </a>
         <Button variant="ghost" @click="router.push('/')" class="gap-2">
           <ArrowLeft class="size-4" />
@@ -32,7 +32,7 @@ const { t } = useI18n();
 
     <footer class="border-t py-8 text-center text-sm text-muted-foreground">
       <div class="container">
-        © 2025 M-HUB — Full Stack IT Company · Kinshasa, RDC
+        © 2025 M-NETHUB — Full Stack IT Company · Kinshasa, RDC
         <span class="mx-3">·</span>
         <a href="/" class="hover:text-primary">{{ t('nav.backHome') }}</a>
       </div>
