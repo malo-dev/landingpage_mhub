@@ -73,8 +73,8 @@ const iconMap: Record<string, any> = {
         innerClassName="gap-[3rem]"
       >
         <div v-for="{ icon, name } in domains" :key="name">
-          <div class="flex items-center text-xl md:text-2xl font-medium">
-            <component :is="iconMap[icon]" class="mr-2 text-primary" stroke-width="2" />
+          <div class="glass-panel tech-glow flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium md:text-lg">
+            <component :is="iconMap[icon]" class="text-primary" size="20" stroke-width="2" />
             {{ name }}
           </div>
         </div>

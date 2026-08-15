@@ -17,7 +17,7 @@ const FAQList = computed(() =>
 <template>
   <section id="faq" class="container md:w-[700px] py-24 sm:py-32">
     <div v-animate class="text-center mb-8">
-      <h2 class="text-lg text-primary text-center mb-2 tracking-wider">{{ t('faq.label') }}</h2>
+      <div class="section-eyebrow justify-center mb-3">{{ t('faq.label') }}</div>
       <h2 class="text-3xl md:text-4xl text-center font-bold">{{ t('faq.title') }}</h2>
     </div>
 

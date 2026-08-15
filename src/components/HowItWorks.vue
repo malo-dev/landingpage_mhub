@@ -38,9 +38,9 @@ const screenshotList = computed(() =>
           <span class="size-2 rounded-full bg-primary animate-pulse" />
           <span class="text-sm font-medium text-primary">M-STORE</span>
         </div>
-        <h2 v-animate class="text-sm text-primary text-center mb-3 tracking-wider uppercase font-semibold">
+        <div v-animate class="section-eyebrow justify-center mb-3">
           {{ t('howItWorks.label') }}
-        </h2>
+        </div>
         <h2 v-animate="{ delay: 100 }" class="text-4xl md:text-5xl text-center font-bold">
           {{ t('howItWorks.title') }}
         </h2>
@@ -50,26 +50,34 @@ const screenshotList = computed(() =>
         <div
           v-for="({ badgeTitle, title, description, image }, index) in screenshotList"
           :key="index"
-          :class="['flex mb-20 items-center gap-10 flex-col lg:flex-row', { 'lg:flex-row-reverse': index % 2 !== 0 }]"
+          :class="['flex mb-24 items-center gap-10 flex-col lg:flex-row', { 'lg:flex-row-reverse': index % 2 !== 0 }]"
         >
           <Card
-            v-animate="{ type: index % 2 === 0 ? 'fade-left' : 'fade-right', delay: 100 }"
-            class="flex-1 h-full bg-transparent border-0 shadow-none"
+            v-animate="{ type: index % 2 === 0 ? 'fade-left' : 'fade-right', delay: 100, repeat: true }"
+            class="tech-glow flex-1 h-full p-2"
           >
             <CardHeader>
               <div class="pb-4"><Badge>{{ badgeTitle }}</Badge></div>
               <CardTitle class="text-2xl md:text-3xl">{{ title }}</CardTitle>
             </CardHeader>
-            <CardContent class="text-muted-foreground text-lg">{{ description }}</CardContent>
+            <CardContent v-scroll-text class="text-muted-foreground text-lg">{{ description }}</CardContent>
           </Card>
 
-          <div v-animate="{ type: index % 2 === 0 ? 'fade-right' : 'fade-left', delay: 200 }" class="flex-1 relative">
-            <!-- Glow behind image -->
-            <div :class="['-z-10 absolute w-44 h-72 lg:w-64 lg:h-80 rounded-full bg-primary/20 blur-3xl', index % 2 === 0 ? 'right-0 -top-6' : 'left-0 -top-6']" />
-            <!-- Image with ring -->
-            <div class="relative rounded-2xl ring-1 ring-primary/20 shadow-2xl shadow-primary/10 overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
-              <img :src="image" :alt="`M-STORE — ${title}`" class="w-full" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div v-animate="{ type: index % 2 === 0 ? 'fade-right' : 'fade-left', delay: 200, repeat: true }" class="flex-1 relative">
+            <!-- Glow derrière l'image -->
+            <div :class="['-z-10 absolute w-44 h-72 lg:w-64 lg:h-80 rounded-full bg-primary/25 blur-3xl', index % 2 === 0 ? 'right-0 -top-6' : 'left-0 -top-6']" />
+            <!-- Cadre "navigateur" glass autour de la capture -->
+            <div class="glass-panel tech-glow relative overflow-hidden rounded-2xl shadow-2xl shadow-primary/10 group transition-transform duration-500 hover:scale-[1.02]">
+              <div class="flex items-center gap-1.5 border-b border-border/50 px-4 py-2.5">
+                <span class="h-2.5 w-2.5 rounded-full bg-destructive/70" />
+                <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+                <span class="h-2.5 w-2.5 rounded-full bg-primary/70" />
+                <span class="ml-3 truncate text-xs text-muted-foreground">m-store.m-nethub.tech</span>
+              </div>
+              <div class="relative">
+                <img :src="image" :alt="`M-STORE — ${title}`" class="w-full" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </div>
           </div>
         </div>

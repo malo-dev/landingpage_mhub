@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Monitor, Bot, Shield, Palette, BarChart3, Video } from "lucide-vue-next";
+import { motion, useScroll, useTransform } from "motion-v";
+import Reveal3D from "./Reveal3D.vue";
 
 const { t, tm } = useI18n();
 
@@ -19,25 +21,35 @@ const profiles = computed(() =>
     popular: i === popularIndex,
   }))
 );
+
+const sectionRef = ref<HTMLElement | null>(null);
+const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+const headingY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 </script>
 
 <template>
-  <section id="engineers" class="container py-24 sm:py-32">
-    <h2 v-animate class="text-lg text-primary text-center mb-2 tracking-wider">
-      {{ t('engineers.label') }}
-    </h2>
-    <h2 v-animate="{ delay: 100 }" class="text-3xl md:text-4xl text-center font-bold mb-4">
-      {{ t('engineers.title') }}
-    </h2>
-    <h3 v-animate="{ delay: 200 }" class="md:w-2/3 mx-auto text-xl text-center text-muted-foreground pb-14">
-      {{ t('engineers.subtitle') }}
-    </h3>
+  <section id="engineers" ref="sectionRef" class="scene container py-24 sm:py-32">
+    <Reveal3D :amount="0.4">
+      <motion.div :style="{ y: headingY }" class="mx-auto max-w-2xl text-center">
+        <div class="section-eyebrow justify-center mb-3">
+          {{ t('engineers.label') }}
+        </div>
+        <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">
+          {{ t('engineers.title') }}
+        </h2>
+        <h3 class="mx-auto text-xl text-center text-muted-foreground pb-14">
+          {{ t('engineers.subtitle') }}
+        </h3>
+      </motion.div>
+    </Reveal3D>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card
+      <Reveal3D
         v-for="({ icon, title, skills, popular }, index) in profiles"
-        v-animate="{ type: 'fade-up', delay: (index % 3) * 120 }"
         :key="index"
+        :delay="(index % 3) * 0.12"
+      >
+      <Card
         :class="[
           'relative transition-all duration-300 hover:shadow-lg',
           popular
@@ -78,6 +90,7 @@ const profiles = computed(() =>
           </Button>
         </CardFooter>
       </Card>
+      </Reveal3D>
     </div>
   </section>
 </template>

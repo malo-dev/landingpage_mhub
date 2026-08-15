@@ -79,7 +79,7 @@ const handleSubmit = async () => {
 <template>
   <section id="devis" class="container py-24 sm:py-32">
     <div v-animate class="text-center mb-12">
-      <h2 class="text-lg text-primary mb-2 tracking-wider">{{ t('devis.label') }}</h2>
+      <div class="section-eyebrow mb-3">{{ t('devis.label') }}</div>
       <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
         <FileText class="size-10 text-primary" />
         {{ t('devis.title') }}

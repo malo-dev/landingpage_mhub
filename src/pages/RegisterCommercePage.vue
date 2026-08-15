@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import {
-  Zap, ArrowLeft, ArrowRight, CheckCircle2,
+  ArrowLeft, ArrowRight, CheckCircle2,
   AlertCircle, Loader2, Store, Building2,
 } from "lucide-vue-next";
+import LogoMnethub from "@/components/LogoMnethub.vue";
 import api from "@/services/api";
 
 const router = useRouter();
@@ -36,7 +36,7 @@ const goBack = () => {
 
 const nextStep = () => {
   error.value = "";
-  if (!form.commercename.trim()) { error.value = "Le nom du commerce est requis."; return; }
+  if (!form.commercename.trim()) { error.value = "Le nom de l'entreprise est requis."; return; }
   if (!form.commerceemail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.commerceemail)) {
     error.value = "Un email valide est requis.";
     return;
@@ -60,7 +60,7 @@ const handleSubmit = async () => {
   } catch (e: any) {
     const msg = e?.response?.data?.message || "";
     if (msg === "COMMERCE_EMAIL_ALREADY_EXISTS") {
-      error.value = "Cet email est déjà associé à un commerce existant.";
+      error.value = "Cet email est déjà associé à une entreprise existante.";
     } else {
       error.value = msg || "Une erreur est survenue. Veuillez réessayer.";
     }
@@ -71,23 +71,21 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-background flex flex-col">
+  <div class="relative min-h-screen flex flex-col overflow-hidden">
+    <!-- Fond tech, cohérent avec le reste du site -->
+    <div class="grid-bg absolute inset-0 -z-10 opacity-60" />
+    <div class="absolute -top-32 left-1/4 -z-10 h-96 w-96 rounded-full bg-primary/20 blur-[120px]" />
+    <div class="absolute -bottom-32 right-1/4 -z-10 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
+
     <!-- Header -->
-    <header class="border-b bg-card">
-      <div class="container flex items-center justify-between h-16">
-        <a href="/" class="flex items-center gap-2">
-          <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
-            <Zap class="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
-            M-NETHUB
-          </span>
-        </a>
-        <Button variant="ghost" @click="goBack" class="gap-2">
-          <ArrowLeft class="size-4" />
-          Retour
-        </Button>
-      </div>
+    <header class="glass-panel sticky top-4 z-40 mx-auto flex w-[92%] max-w-screen-xl items-center justify-between rounded-2xl px-4 py-2.5 lg:w-[90%]">
+      <a href="/" class="flex items-center">
+        <LogoMnethub variant="horizontal" class="text-foreground" icon-class="h-8 w-8" text-class="text-base" />
+      </a>
+      <Button variant="ghost" @click="goBack" class="gap-2">
+        <ArrowLeft class="size-4" />
+        Retour
+      </Button>
     </header>
 
     <!-- Main -->
@@ -99,19 +97,19 @@ const handleSubmit = async () => {
             <CheckCircle2 class="size-16 text-primary" />
           </div>
         </div>
-        <h1 class="text-3xl font-bold">Commerce enregistré !</h1>
+        <h1 class="text-3xl font-bold">Entreprise enregistrée !</h1>
         <p class="text-muted-foreground text-lg">
-          Votre commerce <strong class="text-foreground">{{ form.commercename }}</strong> a été enregistré avec succès.
+          Votre entreprise <strong class="text-foreground">{{ form.commercename }}</strong> a été enregistrée avec succès.
         </p>
         <div class="grid gap-4 text-left">
-          <div class="flex items-start gap-3 p-4 bg-muted/50 rounded-xl">
+          <div class="glass-panel tech-glow flex items-start gap-3 p-4 rounded-xl">
             <CheckCircle2 class="size-5 text-emerald-500 flex-shrink-0 mt-0.5" />
             <div>
               <p class="font-semibold">Email de confirmation envoyé</p>
               <p class="text-sm text-muted-foreground">Vérifiez votre boîte à {{ form.commerceemail }}</p>
             </div>
           </div>
-          <div class="flex items-start gap-3 p-4 bg-muted/50 rounded-xl">
+          <div class="glass-panel tech-glow flex items-start gap-3 p-4 rounded-xl">
             <div class="w-5 h-5 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
               <span class="text-amber-500 text-xs">⏳</span>
             </div>
@@ -120,7 +118,7 @@ const handleSubmit = async () => {
               <p class="text-sm text-muted-foreground">Notre équipe examine votre demande sous <strong>48 heures</strong></p>
             </div>
           </div>
-          <div class="flex items-start gap-3 p-4 bg-muted/50 rounded-xl">
+          <div class="glass-panel tech-glow flex items-start gap-3 p-4 rounded-xl">
             <div class="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
               <span class="text-primary text-xs">💳</span>
             </div>
@@ -136,10 +134,10 @@ const handleSubmit = async () => {
       <!-- Form State -->
       <div v-else>
         <div class="text-center mb-8">
-          <Badge variant="outline" class="mb-3">Inscription gratuite</Badge>
-          <h1 class="text-3xl font-bold mb-2">Créer votre commerce</h1>
+          <div class="section-eyebrow justify-center mb-3">Inscription gratuite</div>
+          <h1 class="text-3xl font-bold mb-2">Créer votre entreprise</h1>
           <p class="text-muted-foreground">
-            Enregistrez votre commerce sur M-STORE et accédez à 29 modules de gestion.
+            Enregistrez votre entreprise sur M-STORE et accédez à 100+ modules de gestion.
           </p>
         </div>
 
@@ -157,22 +155,22 @@ const handleSubmit = async () => {
         </div>
 
         <!-- Step 1 -->
-        <Card v-if="step === 1">
+        <Card v-if="step === 1" class="tech-glow">
           <CardHeader>
             <CardTitle>Informations principales</CardTitle>
             <CardDescription>Nom, email et type de votre commerce</CardDescription>
           </CardHeader>
           <CardContent class="space-y-5">
             <div class="space-y-1.5">
-              <Label>Nom du commerce <span class="text-destructive">*</span></Label>
+              <Label>Nom de l'entreprise <span class="text-destructive">*</span></Label>
               <Input v-model="form.commercename" placeholder="Ex : Boutique Chez Marie" />
             </div>
             <div class="space-y-1.5">
-              <Label>Email du commerce <span class="text-destructive">*</span></Label>
-              <Input v-model="form.commerceemail" type="email" placeholder="contact@moncommerce.com" />
+              <Label>Email de l'entreprise <span class="text-destructive">*</span></Label>
+              <Input v-model="form.commerceemail" type="email" placeholder="contact@monentreprise.com" />
             </div>
             <div class="space-y-2">
-              <Label>Type de commerce</Label>
+              <Label>Type d'entreprise</Label>
               <div class="grid grid-cols-2 gap-3">
                 <button
                   @click="form.type = 'store'"
@@ -180,8 +178,8 @@ const handleSubmit = async () => {
                     form.type === 'store' ? 'border-primary bg-primary/5' : 'border-muted hover:border-muted-foreground']"
                 >
                   <Store class="size-6 mb-2" :class="form.type === 'store' ? 'text-primary' : 'text-muted-foreground'" />
-                  <p class="font-semibold text-sm">Magasin / PME</p>
-                  <p class="text-xs text-muted-foreground mt-0.5">Commerce, boutique, entreprise</p>
+                  <p class="font-semibold text-sm">Entreprise / PME</p>
+                  <p class="text-xs text-muted-foreground mt-0.5">Commerce, boutique, société</p>
                 </button>
                 <button
                   @click="form.type = 'organisation'"
@@ -207,7 +205,7 @@ const handleSubmit = async () => {
         </Card>
 
         <!-- Step 2 -->
-        <Card v-if="step === 2">
+        <Card v-if="step === 2" class="tech-glow">
           <CardHeader>
             <CardTitle>Informations complémentaires</CardTitle>
             <CardDescription>Optionnel — vous pourrez compléter plus tard</CardDescription>
@@ -222,7 +220,7 @@ const handleSubmit = async () => {
               <Input v-model="form.address" placeholder="Ex : Avenue X, Kinshasa" />
             </div>
             <div class="space-y-1.5">
-              <Label>À propos de votre commerce</Label>
+              <Label>À propos de votre entreprise</Label>
               <Textarea v-model="form.about" placeholder="Décrivez brièvement votre activité..." :rows="4" />
             </div>
             <Alert v-if="error" variant="destructive">
@@ -237,7 +235,7 @@ const handleSubmit = async () => {
               </Button>
               <Button @click="handleSubmit" class="flex-1 font-bold" :disabled="loading">
                 <Loader2 v-if="loading" class="size-4 mr-2 animate-spin" />
-                {{ loading ? 'Création...' : 'Créer mon commerce' }}
+                {{ loading ? 'Création...' : 'Créer mon entreprise' }}
               </Button>
             </div>
           </CardContent>

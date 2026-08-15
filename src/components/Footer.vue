@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import Separator from "./ui/separator/Separator.vue";
-import logoMnethub from "@/assets/logo-mnethub.svg";
+import LogoMnethub from "./LogoMnethub.vue";
 
 const { t } = useI18n();
 </script>
 
 <template>
   <footer id="footer" class="container py-24 pb-16 sm:py-32 sm:pb-24">
-    <div v-animate="{ type: 'fade-up' }" class="p-10 bg-muted/50 dark:bg-card border rounded-2xl">
+    <div v-animate="{ type: 'fade-up' }" class="glass-panel p-10 rounded-2xl">
       <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
         <div class="col-span-full xl:col-span-2">
           <a href="/" class="flex font-bold items-center mb-3">
-            <img :src="logoMnethub" alt="M-NETHUB" class="h-10 w-auto" />
+            <LogoMnethub variant="horizontal" class="text-foreground" icon-class="h-10 w-10" text-class="text-xl" />
           </a>
           <p class="text-muted-foreground text-sm">
             {{ t('footer.tagline') }}<br />

@@ -35,7 +35,7 @@ const toggleCategory = (key: string) => {
 <template>
   <section id="pricing" class="container py-24 sm:py-32">
     <div class="text-center mb-12">
-      <h2 v-animate class="text-lg text-primary text-center mb-2 tracking-wider">{{ t('pricing.label') }}</h2>
+      <div v-animate class="section-eyebrow justify-center mb-3">{{ t('pricing.label') }}</div>
       <h2 v-animate="{ delay: 100 }" class="text-3xl md:text-4xl text-center font-bold mb-4">{{ t('pricing.title') }}</h2>
       <p v-animate="{ delay: 200 }" class="md:w-2/3 mx-auto text-xl text-muted-foreground">{{ t('pricing.subtitle') }}</p>
     </div>

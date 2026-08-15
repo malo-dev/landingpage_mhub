@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useColorMode } from "@vueuse/core";
-const mode = useColorMode();
-mode.value = "dark";
+// Le mode clair est le thème par défaut au premier chargement ;
+// un visiteur qui bascule en sombre voit son choix mémorisé (localStorage) au retour.
+useColorMode({ initialValue: "light" });
 </script>
 
 <template>

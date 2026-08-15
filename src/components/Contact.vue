@@ -71,7 +71,7 @@ const handleSubmit = async () => {
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div v-animate="'fade-left'">
         <div class="mb-4">
-          <h2 class="text-lg text-primary mb-2 tracking-wider">{{ t('contact.label') }}</h2>
+          <div class="section-eyebrow mb-3">{{ t('contact.label') }}</div>
           <h2 class="text-3xl md:text-4xl font-bold">{{ t('contact.title') }}</h2>
         </div>
         <p class="mb-8 text-muted-foreground lg:w-5/6">{{ t('contact.subtitle') }}</p>

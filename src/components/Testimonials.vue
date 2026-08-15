@@ -114,9 +114,9 @@ const iconMap: Record<string, any> = {
 <template>
   <section id="modules" class="container py-24 sm:py-32">
     <div class="text-center mb-8">
-      <h2 v-animate class="text-lg text-primary text-center mb-2 tracking-wider">
+      <div v-animate class="section-eyebrow justify-center mb-3">
         M-STORE
-      </h2>
+      </div>
       <h2 v-animate="{ delay: 100 }" class="text-3xl md:text-4xl text-center font-bold mb-4">
         29 modules intégrés
       </h2>

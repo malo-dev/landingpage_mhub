@@ -13,18 +13,18 @@ import demoVideo from "@/assets/demo_mhub.mp4";
         <span>M-NETHUB lance M-STORE</span>
       </Badge>
 
-      <h2 class="text-lg text-primary mb-2 tracking-wider">M-STORE</h2>
+      <div class="section-eyebrow justify-center mb-3">M-STORE</div>
 
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        Système de gestion commerciale
+        Système de gestion d'entreprise
         <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">
           tout-en-un
         </span>
       </h2>
 
-      <p class="md:w-2/3 mx-auto text-xl text-muted-foreground mb-8">
+      <p v-scroll-text class="md:w-2/3 mx-auto text-xl text-muted-foreground mb-8">
         M-STORE est le premier projet phare de M-NETHUB — une plateforme complète de gestion
-        commerciale avec 29 modules et 92 fonctionnalités pour les PME, magasins et organisations.
+        commerciale avec 100+ modules et 92 fonctionnalités pour les PME, magasins et organisations.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4 mb-12">
@@ -63,19 +63,19 @@ import demoVideo from "@/assets/demo_mhub.mp4";
 
     <!-- M-STORE Stats -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center">
-      <div v-animate="{ type: 'fade-up', delay: 0 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 0 }" class="glass-panel tech-glow p-6 rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">29</div>
         <div class="text-muted-foreground">Modules</div>
       </div>
-      <div v-animate="{ type: 'fade-up', delay: 100 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 100 }" class="glass-panel tech-glow p-6 rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">92</div>
         <div class="text-muted-foreground">Fonctionnalités</div>
       </div>
-      <div v-animate="{ type: 'fade-up', delay: 200 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 200 }" class="glass-panel tech-glow p-6 rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">Multi</div>
         <div class="text-muted-foreground">Devises & Branches</div>
       </div>
-      <div v-animate="{ type: 'fade-up', delay: 300 }" class="p-6 bg-muted/50 dark:bg-card rounded-xl">
+      <div v-animate="{ type: 'fade-up', delay: 300 }" class="glass-panel tech-glow p-6 rounded-xl">
         <div class="text-4xl font-bold text-primary mb-2">24/7</div>
         <div class="text-muted-foreground">Support</div>
       </div>

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Globe, Zap, ShieldCheck, HeadphonesIcon } from "lucide-vue-next";
+import { motion, useScroll, useTransform } from "motion-v";
+import Reveal3D from "./Reveal3D.vue";
+import GlassCard from "./GlassCard.vue";
 
 const { t, tm } = useI18n();
 
@@ -12,39 +14,29 @@ const benefitList = computed(() =>
   (tm('benefits.items') as any[]).map((item: any, i: number) => ({
     icon: icons[i],
     title: item.title,
-    description: item.description,
+    text: item.description,
   }))
 );
+
+const sectionRef = ref<HTMLElement | null>(null);
+const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+const headingY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 </script>
 
 <template>
-  <section id="about" class="container py-24 sm:py-32">
-    <div class="grid lg:grid-cols-2 place-items-center lg:gap-24">
-      <div v-animate="'fade-left'">
-        <h2 class="text-lg text-primary mb-2 tracking-wider">{{ t('benefits.label') }}</h2>
+  <section id="about" ref="sectionRef" class="scene container py-24 sm:py-32">
+    <Reveal3D :amount="0.4">
+      <motion.div :style="{ y: headingY }" class="max-w-xl">
+        <div class="section-eyebrow mb-3">{{ t('benefits.label') }}</div>
         <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ t('benefits.title') }}</h2>
-        <p class="text-xl text-muted-foreground mb-8">{{ t('benefits.subtitle') }}</p>
-      </div>
+        <p class="text-xl text-muted-foreground">{{ t('benefits.subtitle') }}</p>
+      </motion.div>
+    </Reveal3D>
 
-      <div class="grid lg:grid-cols-2 gap-4 w-full">
-        <Card
-          v-for="({ icon, title, description }, index) in benefitList"
-          v-animate="{ type: 'fade-up', delay: index * 120 }"
-          :key="index"
-          class="bg-muted/50 dark:bg-card hover:bg-background dark:hover:bg-background transition-all delay-75 group/number"
-        >
-          <CardHeader>
-            <div class="flex justify-between">
-              <component class="size-8 mb-6 text-primary" :is="icon" />
-              <span class="text-5xl text-muted-foreground/15 font-medium transition-all delay-75 group-hover/number:text-muted-foreground/30">
-                0{{ index + 1 }}
-              </span>
-            </div>
-            <CardTitle>{{ title }}</CardTitle>
-          </CardHeader>
-          <CardContent class="text-muted-foreground">{{ description }}</CardContent>
-        </Card>
-      </div>
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      <Reveal3D v-for="(benefit, i) in benefitList" :key="i" :delay="i * 0.12">
+        <GlassCard :icon="benefit.icon" :title="benefit.title" :text="benefit.text" />
+      </Reveal3D>
     </div>
   </section>
 </template>
