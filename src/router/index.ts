@@ -7,6 +7,9 @@ import OffresPage from '@/pages/OffresPage.vue';
 import ContactPage from '@/pages/ContactPage.vue';
 import CarrieresPage from '@/pages/CarrieresPage.vue';
 import PolitiqueConfidentialitePage from '@/pages/PolitiqueConfidentialitePage.vue';
+import MarketPrivacyPage from '@/pages/MarketPrivacyPage.vue';
+import MarketAccountDeletionPage from '@/pages/MarketAccountDeletionPage.vue';
+import MarketMarketingPage from '@/pages/MarketMarketingPage.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,6 +26,9 @@ const router = createRouter({
     { path: '/contact',                      component: ContactPage },
     { path: '/carrieres',                    component: CarrieresPage },
     { path: '/politique-confidentialite',    component: PolitiqueConfidentialitePage },
+    { path: '/m-market',                     component: MarketMarketingPage },
+    { path: '/m-market/confidentialite',     component: MarketPrivacyPage },
+    { path: '/m-market/suppression-compte',  component: MarketAccountDeletionPage },
   ],
 });
 
