@@ -104,7 +104,7 @@ const statusVariant = (status: string) => {
           <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text font-extrabold text-xl">
             M-NETHUB
           </span>
         </a>

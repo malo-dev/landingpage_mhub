@@ -1,96 +1,48 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Check, Monitor, Bot, Shield, Palette, BarChart3, Video } from "lucide-vue-next";
-import { motion, useScroll, useTransform } from "motion-v";
-import Reveal3D from "./Reveal3D.vue";
+import { ArrowRight, Bot, Check, BarChart3, Monitor, Palette, Shield, Video } from "lucide-vue-next";
 
 const { t, tm } = useI18n();
-
 const icons = [Monitor, Bot, Shield, Palette, BarChart3, Video];
-const popularIndex = 1;
-
 const profiles = computed(() =>
-  (tm('engineers.profiles') as any[]).map((p: any, i: number) => ({
+  (tm("engineers.profiles") as any[]).map((p: any, i: number) => ({
     icon: icons[i],
-    title: p.title,
+    title: p.title as string,
     skills: p.skills as string[],
-    popular: i === popularIndex,
   }))
 );
-
-const sectionRef = ref<HTMLElement | null>(null);
-const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-const headingY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 </script>
 
 <template>
-  <section id="engineers" ref="sectionRef" class="scene container py-24 sm:py-32">
-    <Reveal3D :amount="0.4">
-      <motion.div :style="{ y: headingY }" class="mx-auto max-w-2xl text-center">
-        <div class="section-eyebrow justify-center mb-3">
-          {{ t('engineers.label') }}
+  <section id="ingenieurs" class="section-pad">
+    <div class="container">
+      <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+        <div v-animate class="max-w-2xl">
+          <span class="kicker">{{ t("engineers.label") }}</span>
+          <h2 class="section-title">{{ t("engineers.title") }}</h2>
+          <p class="section-lead">{{ t("engineers.subtitle") }}</p>
         </div>
-        <h2 class="text-3xl md:text-4xl text-center font-bold mb-4">
-          {{ t('engineers.title') }}
-        </h2>
-        <h3 class="mx-auto text-xl text-center text-muted-foreground pb-14">
-          {{ t('engineers.subtitle') }}
-        </h3>
-      </motion.div>
-    </Reveal3D>
+        <a
+          href="#contact"
+          class="inline-flex h-11 items-center gap-2 rounded-xl border border-input bg-card px-5 text-sm font-semibold shadow-sm transition-all hover:-translate-y-0.5 hover:bg-muted"
+        >
+          {{ t("home.team.cta") }} <ArrowRight class="size-4" />
+        </a>
+      </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Reveal3D
-        v-for="({ icon, title, skills, popular }, index) in profiles"
-        :key="index"
-        :delay="(index % 3) * 0.12"
-      >
-      <Card
-        :class="[
-          'relative transition-all duration-300 hover:shadow-lg',
-          popular
-            ? 'drop-shadow-xl shadow-black/10 dark:shadow-primary/20 border-[1.5px] border-primary lg:scale-[1.05]'
-            : 'hover:border-primary/30',
-        ]"
-      >
-        <Badge v-if="popular" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-          {{ t('engineers.popular') }}
-        </Badge>
-        <CardHeader>
-          <div class="mb-3">
-            <div
-              :class="[
-                'inline-flex p-3 rounded-xl ring-4',
-                popular
-                  ? 'bg-primary/20 ring-primary/10'
-                  : 'bg-muted ring-muted',
-              ]"
-            >
-              <component :is="icon" :class="['size-7', popular ? 'text-primary' : 'text-muted-foreground']" />
-            </div>
-          </div>
-          <CardTitle class="text-xl">{{ title }}</CardTitle>
-          <CardDescription>{{ t('engineers.specialized') }}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div class="space-y-3">
-            <span v-for="skill in skills" :key="skill" class="flex items-center">
-              <Check class="text-primary mr-2 size-4 flex-shrink-0" />
-              <span>{{ skill }}</span>
-            </span>
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button :variant="popular ? 'default' : 'secondary'" class="w-full" as-child>
-            <a href="/contact">{{ t('engineers.contactBtn') }}</a>
-          </Button>
-        </CardFooter>
-      </Card>
-      </Reveal3D>
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div v-for="(p, i) in profiles" :key="i" v-animate="{ type: 'fade-up', delay: (i % 3) * 90 }" class="surface-card p-6">
+          <span class="grid size-12 place-items-center rounded-2xl bg-accent text-accent-foreground"><component :is="p.icon" class="size-6" /></span>
+          <h3 class="mt-5 text-lg font-extrabold">{{ p.title }}</h3>
+          <p class="mt-0.5 text-[13px] text-muted-foreground">{{ t("engineers.specialized") }}</p>
+          <ul class="mt-5 space-y-2.5">
+            <li v-for="s in p.skills" :key="s" class="flex items-start gap-2 text-[14px]">
+              <Check class="mt-0.5 size-4 flex-shrink-0 text-primary" /> {{ s }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </template>

@@ -77,19 +77,17 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <section id="devis" class="container py-24 sm:py-32">
-    <div v-animate class="text-center mb-12">
-      <div class="section-eyebrow mb-3">{{ t('devis.label') }}</div>
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3">
-        <FileText class="size-10 text-primary" />
-        {{ t('devis.title') }}
-      </h2>
-      <p class="md:w-1/2 mx-auto text-xl text-muted-foreground">{{ t('devis.subtitle') }}</p>
+  <section id="devis" class="section-pad border-t border-border bg-muted/60">
+    <div class="container">
+    <div v-animate class="mx-auto mb-10 max-w-2xl text-center">
+      <span class="kicker">{{ t('devis.label') }}</span>
+      <h2 class="section-title">{{ t('devis.title') }}</h2>
+      <p class="section-lead">{{ t('devis.subtitle') }}</p>
     </div>
 
     <div class="max-w-3xl mx-auto">
-      <Card v-animate="{ type: 'fade-up', delay: 200 }" class="bg-muted/60 dark:bg-card border border-primary/20">
-        <CardHeader class="text-xl font-bold text-primary pb-0">
+      <Card v-animate="{ type: 'fade-up', delay: 200 }" class="rounded-[22px] border-border bg-card p-1 shadow-lg">
+        <CardHeader class="font-display text-xl font-extrabold pb-0">
           {{ t('devis.formTitle') }}
         </CardHeader>
         <CardContent class="pt-6">
@@ -217,6 +215,7 @@ const handleSubmit = async () => {
           </form>
         </CardContent>
       </Card>
+    </div>
     </div>
   </section>
 </template>

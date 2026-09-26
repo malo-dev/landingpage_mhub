@@ -1,6 +1,5 @@
 /* ===== Google Fonts — must be first ===== */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 /* Rondeur ludique/tech pour le wordmark du logo M-NETHUB */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap');
 
@@ -24,72 +23,71 @@ html {
   backface-visibility: hidden;
 }
 
-/* ===== M-HUB Cyber Blue Theme ===== */
+/* ===== Thème M-NETHUB — même identité que M-Mail : indigo + or, fond chaud ===== */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 8%;
+    --background: 40 25% 97%;
+    --foreground: 222 17% 10%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 17% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 222 17% 10%;
 
-    /* Cyber Blue #00E5FF adjusted for light mode readability */
-    --primary: 187 100% 36%;
+    --primary: 235 61% 57%;
     --primary-foreground: 0 0% 100%;
 
-    /* Metallic Silver */
-    --secondary: 0 0% 93%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 40 12% 94%;
+    --secondary-foreground: 222 17% 10%;
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 44%;
+    --muted: 40 12% 95%;
+    --muted-foreground: 222 6% 38%;
 
-    --accent: 0 0% 93%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 235 80% 96%;
+    --accent-foreground: 235 45% 35%;
 
-    --destructive: 0 84.2% 60.2%;
+    --gold: 40 55% 54%;
+
+    --destructive: 0 68% 54%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
-    --ring: 187 100% 36%;
-    --radius: 0.5rem;
+    --border: 40 6% 89%;
+    --input: 40 6% 84%;
+    --ring: 235 61% 57%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Anthracite #1A1A1A */
-    --background: 0 0% 10%;
-    --foreground: 0 0% 97%;
+    --background: 228 25% 5%;
+    --foreground: 225 14% 96%;
 
-    --card: 0 0% 13%;
-    --card-foreground: 0 0% 95%;
+    --card: 222 14% 9%;
+    --card-foreground: 225 14% 96%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 97%;
+    --popover: 222 14% 9%;
+    --popover-foreground: 225 14% 96%;
 
-    /* Cyber Blue #00E5FF */
-    --primary: 187 100% 50%;
-    --primary-foreground: 0 0% 8%;
+    --primary: 235 87% 82%;
+    --primary-foreground: 228 25% 5%;
 
-    /* Dark silver */
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 222 13% 13%;
+    --secondary-foreground: 225 14% 96%;
 
-    --muted: 0 0% 17%;
-    --muted-foreground: 0 0% 63%;
+    --muted: 222 13% 11%;
+    --muted-foreground: 222 8% 65%;
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 97%;
+    --accent: 235 35% 20%;
+    --accent-foreground: 235 87% 88%;
 
-    --destructive: 0 72.2% 50.6%;
+    --gold: 40 60% 62%;
+
+    --destructive: 0 72% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 187 100% 50%;
+    --border: 222 10% 17%;
+    --input: 222 10% 22%;
+    --ring: 235 87% 82%;
   }
 }
 
@@ -97,12 +95,21 @@ html {
   * {
     @apply border-border;
   }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    word-spacing: 0.06em;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
@@ -246,47 +253,63 @@ html {
   animation: float-slow 6s ease-in-out infinite;
 }
 
-/* ===== Liquid Glass (hero plein écran sur vidéo) ===== */
+/* ===== Design M-NETHUB (langage commun avec M-Mail) ===== */
+.section-pad { padding-block: 5.5rem; }
+@media (max-width: 640px) { .section-pad { padding-block: 4rem; } }
 
-/* Geist est scopé au hero pour ne pas écraser Montserrat/Inter du reste du site */
-.liquid-hero,
-.liquid-hero * {
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+.kicker {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+}
+.section-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+.section-lead { margin-top: 0.9rem; font-size: 1.05rem; line-height: 1.65; color: hsl(var(--muted-foreground)); }
+
+.text-gradient {
+  background: linear-gradient(95deg, hsl(var(--primary)), color-mix(in srgb, hsl(var(--primary)) 45%, hsl(var(--gold))));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
-  background-blend-mode: luminosity;
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+.surface-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 1.125rem;
+  box-shadow: 0 1px 2px hsl(var(--foreground) / 0.05);
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
+}
+.surface-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px hsl(var(--foreground) / 0.09);
+  border-color: hsl(var(--foreground) / 0.16);
 }
 
-.liquid-glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0.15) 80%,
-    rgba(255, 255, 255, 0.45) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+.hero-grid {
+  background-image:
+    linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 62% at 50% 22%, #000 18%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 62% at 50% 22%, #000 18%, transparent 75%);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+@keyframes pop { from { opacity: 0; transform: scale(0.85); } }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+.anim-rise { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

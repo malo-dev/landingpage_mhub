@@ -25,7 +25,7 @@ export default {
     aboutMission: "Onze missie & waarden",
     visionRdc: "DRC → Afrika → Wereld",
     engineers6: "6 specialisaties beschikbaar",
-    mstoreDesc: "Bedrijfsmanagementsysteem — 100+ modules, 92 functies, $2/maand",
+    mstoreDesc: "Bedrijfsmanagementsysteem — 100+ modules, 92 functies, $5/maand (kmo) · $15/maand (ngo)",
     mstoreOnline: "Online",
     preview: "Overzicht & videodemo",
     modules29short: "100+ modules",
@@ -352,5 +352,165 @@ export default {
     es: "Español",
     de: "Deutsch",
     nl: "Nederlands",
+  },
+  home: {
+    "nav": {
+      "products": "Producten",
+      "services": "Diensten",
+      "vision": "Visie",
+      "team": "Ingenieurs",
+      "contact": "Contact",
+      "quote": "Offerte aanvragen",
+      "menu": "Menu",
+      "appearance": "Weergave",
+      "careers": "Vacatures",
+      "privacy": "Privacy"
+    },
+    "hero": {
+      "eyebrow": "Full Stack IT Company · Kinshasa",
+      "title1": "Software die",
+      "titleAccent": "uw organisatie draaiende houdt.",
+      "subtitle": "M-NETHUB ontwerpt en beheert eigen producten: e-mail, bedrijfsbeheer, marktplaats, ziekenhuisbeheer en cloud. Eén uitgever, één kwaliteitsnorm.",
+      "ctaProducts": "Ontdek onze producten",
+      "ctaQuote": "Offerte aanvragen",
+      "r1": "6 producten live",
+      "r2": "Eigen team van ingenieurs",
+      "r3": "Support in het Frans en Engels",
+      "mockTitle": "M-NETHUB-werkruimte",
+      "chip1": "Nieuw bericht ontvangen",
+      "chip1s": "M-Mail · zojuist",
+      "chip2": "Verkoop geregistreerd",
+      "chip2s": "M-Store · aan de kassa"
+    },
+    "figures": [
+      {
+        "v": "6",
+        "l": "producten in productie"
+      },
+      {
+        "v": "13",
+        "l": "expertisegebieden"
+      },
+      {
+        "v": "5",
+        "l": "talen op de site"
+      },
+      {
+        "v": "DRC → Wereld",
+        "l": "onze ambitie"
+      }
+    ],
+    "products": {
+      "label": "Onze producten",
+      "title": "Een productfamilie, één team",
+      "subtitle": "Elk product lost een concrete behoefte op en werkt op zichzelf. Samen dekken ze e-mail, verkoop, gezondheidszorg en hosting.",
+      "items": {
+        "mmail": {
+          "name": "M-Mail",
+          "badge": "E-mail",
+          "tag": "De zakelijke e-mail van uw organisatie",
+          "desc": "Uw teams lezen en schrijven hun zakelijke e-mail in één app, op mobiel en computer. Eén tarief per organisatie, niet per persoon.",
+          "points": [
+            "$10/maand voor 13 mailboxen",
+            "10 dagen gratis proberen",
+            "Meldingen en offline modus"
+          ],
+          "cta": "Ontdek M-Mail"
+        },
+        "mmarket": {
+          "name": "M-Market",
+          "badge": "Mobiele app",
+          "tag": "Winkelen in de buurt, eenvoudig gemaakt",
+          "desc": "Vind producten bij u in de buurt van lokale bedrijven en particuliere verkopers en volg uw bestelling tot de levering.",
+          "points": [
+            "Zoeken met een foto",
+            "Bestelling live volgen",
+            "Bezorger worden via de app"
+          ],
+          "cta": "Ontdek M-Market"
+        },
+        "mstoremobile": {
+          "name": "M-Store Mobile",
+          "badge": "Mobiele app",
+          "tag": "Uw zaak in uw zak",
+          "desc": "Volg uw verkoop, voorraad en team vanaf uw telefoon, met hetzelfde account als M-Store.",
+          "points": [
+            "Verkoop en voorraad live",
+            "Teambeheer",
+            "Nuttige meldingen"
+          ],
+          "cta": "Toegang aanvragen"
+        },
+        "mstore": {
+          "name": "M-Store",
+          "badge": "Bedrijfsbeheer",
+          "tag": "Het alles-in-één bedrijfsbeheersysteem",
+          "desc": "Verkoop, voorraad, financiën, HR, klanten: een compleet platform voor kmo's, winkels en ngo's, met een openbare webshop.",
+          "points": [
+            "100+ modules, 92 functies",
+            "Meerdere valuta en filialen",
+            "Vanaf $5/maand (kmo) · $15/maand (ngo)"
+          ],
+          "cta": "Bekijk de tarieven"
+        },
+        "mhms": {
+          "name": "M-HMS",
+          "badge": "Gezondheidszorg",
+          "tag": "Ziekenhuisbeheer, een werkruimte per functie",
+          "desc": "Patiënten, consultaties, laboratorium, apotheek, facturatie en statistieken: elke functie in de instelling werkt in een eigen ruimte.",
+          "points": [
+            "20 klinische en administratieve modules",
+            "Elektronisch patiëntendossier",
+            "Een werkruimte per functie"
+          ],
+          "cta": "Demo aanvragen"
+        },
+        "mcloud": {
+          "name": "M-Cloud",
+          "badge": "Cloud",
+          "tag": "Cloud en hosting beheerd door ingenieurs",
+          "desc": "Websites, applicaties en back-ups gehost en bewaakt door ons team, zodat u zich op uw activiteit kunt richten.",
+          "points": [
+            "Web- en apphosting",
+            "Back-ups en monitoring",
+            "Support door onze ingenieurs"
+          ],
+          "cta": "Bezoek M-Cloud"
+        }
+      }
+    },
+    "spotlight": {
+      "label": "M-Store in detail",
+      "title": "Eén dashboard om uw hele zaak te sturen",
+      "subtitle": "Ontdek de interface van M-Store, het bedrijfsbeheersysteem van M-NETHUB.",
+      "demo": "Bekijk de videodemo",
+      "hideDemo": "Video verbergen",
+      "open": "M-Store openen"
+    },
+    "why": {
+      "label": "Waarom M-NETHUB",
+      "title": "De uitgever achter uw tools",
+      "subtitle": "Wij beheren onze producten zelf: wat u gebruikt, onderhouden wij elke dag."
+    },
+    "team": {
+      "cta": "Neem contact op"
+    },
+    "cta": {
+      "title": "Een project? Laten we praten.",
+      "text": "Beschrijf uw behoefte: we komen snel terug met een duidelijk voorstel.",
+      "primary": "Offerte aanvragen",
+      "secondary": "Schrijf ons"
+    },
+    "footer": {
+      "tagline": "Full Stack IT Company — Kinshasa, DR Congo.",
+      "pTitle": "Producten",
+      "cTitle": "Bedrijf",
+      "lTitle": "Juridisch",
+      "careers": "Vacatures",
+      "privacy": "Privacybeleid",
+      "mailPrivacy": "Privacy M-Mail",
+      "marketPrivacy": "Privacy M-Market",
+      "rights": "Alle rechten voorbehouden."
+    }
   },
 }

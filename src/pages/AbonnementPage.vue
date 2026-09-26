@@ -86,7 +86,7 @@ const formatDate = (d: string) =>
           <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text font-extrabold text-xl">
             M-NETHUB
           </span>
         </a>
@@ -173,7 +173,7 @@ const formatDate = (d: string) =>
           </h3>
           <p class="text-muted-foreground mb-6">
             Remplissez le formulaire ci-dessous pour demander votre activation à
-            <strong class="text-primary">$2 / mois</strong>.
+            <strong class="text-primary">$5 / mois</strong> (commerce / PME) ou <strong class="text-primary">$15 / mois</strong> (ONG).
             Notre équipe vous contactera pour confirmer le paiement.
           </p>
 
@@ -199,10 +199,10 @@ const formatDate = (d: string) =>
                   <Input
                     v-model="amount"
                     type="number"
-                    min="2"
-                    placeholder="Ex : 2"
+                    min="5"
+                    placeholder="Ex : 5"
                   />
-                  <p class="text-xs text-muted-foreground">Abonnement M-STORE : $2 / mois</p>
+                  <p class="text-xs text-muted-foreground">Abonnement M-STORE : $5 / mois (commerce / PME) — $15 / mois (ONG)</p>
                 </div>
 
                 <div class="space-y-1.5">

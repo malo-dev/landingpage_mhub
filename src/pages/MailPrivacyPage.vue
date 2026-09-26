@@ -30,7 +30,7 @@ const router = useRouter();
         </div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           Vos données sur
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">M-Mail</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text">M-Mail</span>
         </h1>
         <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
           M-Mail est un client de messagerie pour boîtes e-mail professionnelles (IMAP/SMTP), avec

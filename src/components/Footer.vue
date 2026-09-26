@@ -1,64 +1,71 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import Separator from "./ui/separator/Separator.vue";
+import { Mail, MapPin, Phone } from "lucide-vue-next";
 import LogoMnethub from "./LogoMnethub.vue";
+import { products } from "@/data/products";
 
 const { t } = useI18n();
+const year = new Date().getFullYear();
+
+const company = [
+  { label: () => t("home.nav.services"), href: "/#services" },
+  { label: () => t("home.nav.vision"), href: "/#vision" },
+  { label: () => t("home.nav.team"), href: "/#ingenieurs" },
+  { label: () => t("home.footer.careers"), href: "/carrieres" },
+  { label: () => t("home.nav.contact"), href: "/#contact" },
+];
+const legal = [
+  { label: () => t("home.footer.privacy"), href: "/politique-confidentialite" },
+  { label: () => t("home.footer.mailPrivacy"), href: "/m-mail/confidentialite" },
+  { label: () => t("home.footer.marketPrivacy"), href: "/m-market/confidentialite" },
+];
 </script>
 
 <template>
-  <footer id="footer" class="container py-24 pb-16 sm:py-32 sm:pb-24">
-    <div v-animate="{ type: 'fade-up' }" class="glass-panel p-10 rounded-2xl">
-      <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-x-12 gap-y-8">
-        <div class="col-span-full xl:col-span-2">
-          <a href="/" class="flex font-bold items-center mb-3">
-            <LogoMnethub variant="horizontal" class="text-foreground" icon-class="h-10 w-10" text-class="text-xl" />
-          </a>
-          <p class="text-muted-foreground text-sm">
-            {{ t('footer.tagline') }}<br />
-            {{ t('footer.taglineSub') }}
-          </p>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <h3 class="font-bold text-lg">{{ t('footer.company') }}</h3>
-          <div><a href="#about" class="opacity-60 hover:opacity-100">{{ t('footer.about') }}</a></div>
-          <div><a href="#vision" class="opacity-60 hover:opacity-100">{{ t('footer.vision') }}</a></div>
-          <div><a href="#engineers" class="opacity-60 hover:opacity-100">{{ t('footer.engineers') }}</a></div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <h3 class="font-bold text-lg">{{ t('footer.products') }}</h3>
-          <div><a href="#mstore" class="opacity-60 hover:opacity-100">M-STORE</a></div>
-          <div><a href="#modules" class="opacity-60 hover:opacity-100">{{ t('footer.modules') }}</a></div>
-          <div><a href="#screenshots" class="opacity-60 hover:opacity-100">{{ t('footer.preview') }}</a></div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <h3 class="font-bold text-lg">{{ t('footer.services') }}</h3>
-          <div><a href="#services" class="opacity-60 hover:opacity-100">{{ t('footer.development') }}</a></div>
-          <div><a href="#services" class="opacity-60 hover:opacity-100">{{ t('footer.iaml') }}</a></div>
-          <div><a href="#services" class="opacity-60 hover:opacity-100">{{ t('footer.cyber') }}</a></div>
-          <div><a href="#services" class="opacity-60 hover:opacity-100">{{ t('footer.cloud') }}</a></div>
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <h3 class="font-bold text-lg">{{ t('footer.contact') }}</h3>
-          <div><a href="#contact" class="opacity-60 hover:opacity-100">{{ t('footer.contactUs') }}</a></div>
-          <div><a href="#faq" class="opacity-60 hover:opacity-100">{{ t('footer.faq') }}</a></div>
-          <div><a href="mailto:contact@m-nethub.tech" class="opacity-60 hover:opacity-100">contact@m-nethub.tech</a></div>
-          <div><a href="/politique-confidentialite" class="opacity-60 hover:opacity-100">{{ t('footer.privacy') }}</a></div>
-        </div>
+  <footer class="mt-24 border-t border-border bg-card/60">
+    <div class="container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div>
+        <a href="/" aria-label="M-NETHUB">
+          <LogoMnethub variant="horizontal" class="text-foreground" icon-class="h-9 w-9" text-class="text-xl" />
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{{ t("home.footer.tagline") }}</p>
+        <ul class="mt-5 space-y-2 text-sm text-muted-foreground">
+          <li class="flex items-center gap-2"><Mail class="size-4 text-primary" /> <a href="mailto:contact@m-nethub.tech" class="hover:text-foreground">contact@m-nethub.tech</a></li>
+          <li class="flex items-center gap-2"><Phone class="size-4 text-primary" /> +243 972 258 637</li>
+          <li class="flex items-center gap-2"><MapPin class="size-4 text-primary" /> Kinshasa, RDC</li>
+        </ul>
       </div>
 
-      <Separator class="my-6" />
-      <section class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <h3 class="text-muted-foreground text-sm">{{ t('footer.rights') }}</h3>
-        <div class="flex items-center gap-4">
-          <a href="/politique-confidentialite" class="text-muted-foreground text-sm hover:text-primary transition-colors">{{ t('footer.privacy') }}</a>
-          <p class="text-muted-foreground text-sm">{{ t('footer.location') }}</p>
-        </div>
-      </section>
+      <div>
+        <h3 class="text-sm font-bold">{{ t("home.footer.pTitle") }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li v-for="p in products" :key="p.key">
+            <RouterLink v-if="p.href.startsWith('/')" :to="p.href" class="hover:text-foreground">{{ t(`home.products.items.${p.key}.name`) }}</RouterLink>
+            <a v-else :href="p.href.startsWith('#') ? '/' + p.href : p.href" :target="p.external ? '_blank' : undefined" rel="noopener" class="hover:text-foreground">{{ t(`home.products.items.${p.key}.name`) }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold">{{ t("home.footer.cTitle") }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li v-for="c in company" :key="c.href"><a :href="c.href" class="hover:text-foreground">{{ c.label() }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold">{{ t("home.footer.lTitle") }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li v-for="l in legal" :key="l.href"><RouterLink :to="l.href" class="hover:text-foreground">{{ l.label() }}</RouterLink></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-border">
+      <div class="container flex flex-wrap items-center justify-between gap-2 py-5 text-[12.5px] text-muted-foreground/80">
+        <span>© {{ year }} M-NETHUB. {{ t("home.footer.rights") }}</span>
+        <span>Full Stack IT Company</span>
+      </div>
     </div>
   </footer>
 </template>

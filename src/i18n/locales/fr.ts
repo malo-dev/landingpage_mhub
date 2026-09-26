@@ -25,7 +25,7 @@ export default {
     aboutMission: "Notre mission & valeurs",
     visionRdc: "RDC → Afrique → Monde",
     engineers6: "6 spécialisations disponibles",
-    mstoreDesc: "Système de gestion commerciale — 100+ modules, 92 fonctionnalités, $2/mois",
+    mstoreDesc: "Système de gestion commerciale — 100+ modules, 92 fonctionnalités, $5/mois (PME) · $15/mois (ONG)",
     mstoreOnline: "En ligne",
     preview: "Aperçu & démo vidéo",
     modules29short: "100+ modules",
@@ -352,5 +352,165 @@ export default {
     es: "Español",
     de: "Deutsch",
     nl: "Nederlands",
+  },
+  home: {
+    "nav": {
+      "products": "Produits",
+      "services": "Services",
+      "vision": "Vision",
+      "team": "Ingénieurs",
+      "contact": "Contact",
+      "quote": "Demander un devis",
+      "menu": "Menu",
+      "appearance": "Apparence",
+      "careers": "Carrières",
+      "privacy": "Confidentialité"
+    },
+    "hero": {
+      "eyebrow": "Full Stack IT Company · Kinshasa",
+      "title1": "Des logiciels qui font tourner",
+      "titleAccent": "votre organisation.",
+      "subtitle": "M-NETHUB conçoit et exploite ses propres produits : messagerie, gestion d'entreprise, marketplace, gestion hospitalière et cloud. Un seul éditeur, une même exigence de qualité.",
+      "ctaProducts": "Découvrir nos produits",
+      "ctaQuote": "Demander un devis",
+      "r1": "6 produits en ligne",
+      "r2": "Équipe d'ingénieurs dédiée",
+      "r3": "Support en français et en anglais",
+      "mockTitle": "Espace M-NETHUB",
+      "chip1": "Nouveau message reçu",
+      "chip1s": "M-Mail · à l'instant",
+      "chip2": "Vente enregistrée",
+      "chip2s": "M-Store · en caisse"
+    },
+    "figures": [
+      {
+        "v": "6",
+        "l": "produits en production"
+      },
+      {
+        "v": "13",
+        "l": "domaines d'expertise"
+      },
+      {
+        "v": "5",
+        "l": "langues du site"
+      },
+      {
+        "v": "RDC → Monde",
+        "l": "notre ambition"
+      }
+    ],
+    "products": {
+      "label": "Nos produits",
+      "title": "Une famille de produits, une seule équipe",
+      "subtitle": "Chaque produit résout un besoin précis et s'utilise seul. Ensemble, ils couvrent la messagerie, la vente, la santé et l'hébergement.",
+      "items": {
+        "mmail": {
+          "name": "M-Mail",
+          "badge": "Messagerie",
+          "tag": "La messagerie professionnelle de votre organisation",
+          "desc": "Vos équipes lisent et écrivent leurs e-mails pro depuis une seule application, sur mobile comme sur ordinateur. Un tarif par organisation, pas par personne.",
+          "points": [
+            "10 $/mois pour 13 boîtes",
+            "10 jours d'essai gratuit",
+            "Notifications et mode hors connexion"
+          ],
+          "cta": "Découvrir M-Mail"
+        },
+        "mmarket": {
+          "name": "M-Market",
+          "badge": "Application mobile",
+          "tag": "Le shopping de proximité, simplifié",
+          "desc": "Trouvez des produits près de chez vous, chez des entreprises locales comme chez des vendeurs particuliers, et suivez votre commande jusqu'à la livraison.",
+          "points": [
+            "Recherche par photo",
+            "Suivi de commande en temps réel",
+            "Devenir livreur depuis l'app"
+          ],
+          "cta": "Découvrir M-Market"
+        },
+        "mstoremobile": {
+          "name": "M-Store Mobile",
+          "badge": "Application mobile",
+          "tag": "Votre commerce dans la poche",
+          "desc": "Suivez vos ventes, votre stock et votre équipe depuis votre téléphone, sur le même compte que M-Store.",
+          "points": [
+            "Ventes et stock en temps réel",
+            "Gestion de l'équipe",
+            "Notifications utiles"
+          ],
+          "cta": "Demander l'accès"
+        },
+        "mstore": {
+          "name": "M-Store",
+          "badge": "Gestion d'entreprise",
+          "tag": "Le système de gestion d'entreprise tout-en-un",
+          "desc": "Ventes, stock, finances, RH, clients : une plateforme complète pour les PME, commerces et ONG, avec une boutique en ligne publique.",
+          "points": [
+            "100+ modules, 92 fonctionnalités",
+            "Multi-devises et multi-branches",
+            "5 $/mois (PME) · 15 $/mois (ONG)"
+          ],
+          "cta": "Voir les offres"
+        },
+        "mhms": {
+          "name": "M-HMS",
+          "badge": "Santé",
+          "tag": "La gestion hospitalière, un espace par métier",
+          "desc": "Patients, consultations, laboratoire, pharmacie, facturation et statistiques : chaque rôle de l'établissement travaille dans son propre espace.",
+          "points": [
+            "20 modules cliniques et administratifs",
+            "Dossier patient électronique",
+            "Un espace par rôle"
+          ],
+          "cta": "Demander une démo"
+        },
+        "mcloud": {
+          "name": "M-Cloud",
+          "badge": "Cloud",
+          "tag": "Cloud et hébergement gérés par des ingénieurs",
+          "desc": "Sites web, applications et sauvegardes hébergés et supervisés par notre équipe, pour que vous vous concentriez sur votre activité.",
+          "points": [
+            "Hébergement web et applications",
+            "Sauvegardes et supervision",
+            "Support par nos ingénieurs"
+          ],
+          "cta": "Visiter M-Cloud"
+        }
+      }
+    },
+    "spotlight": {
+      "label": "M-Store en détail",
+      "title": "Un tableau de bord pour piloter tout votre commerce",
+      "subtitle": "Découvrez l'interface de M-Store, le système de gestion d'entreprise de M-NETHUB.",
+      "demo": "Voir la démo vidéo",
+      "hideDemo": "Masquer la vidéo",
+      "open": "Ouvrir M-Store"
+    },
+    "why": {
+      "label": "Pourquoi M-NETHUB",
+      "title": "L'éditeur derrière vos outils",
+      "subtitle": "Nous exploitons nos produits nous-mêmes : ce que vous utilisez, nous le maintenons chaque jour."
+    },
+    "team": {
+      "cta": "Nous contacter"
+    },
+    "cta": {
+      "title": "Un projet ? Parlons-en.",
+      "text": "Décrivez votre besoin : nous revenons vers vous rapidement avec une proposition claire.",
+      "primary": "Demander un devis",
+      "secondary": "Nous écrire"
+    },
+    "footer": {
+      "tagline": "Full Stack IT Company — Kinshasa, RDC.",
+      "pTitle": "Produits",
+      "cTitle": "Société",
+      "lTitle": "Légal",
+      "careers": "Carrières",
+      "privacy": "Politique de confidentialité",
+      "mailPrivacy": "Confidentialité M-Mail",
+      "marketPrivacy": "Confidentialité M-Market",
+      "rights": "Tous droits réservés."
+    }
   },
 }

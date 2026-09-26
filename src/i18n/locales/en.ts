@@ -25,7 +25,7 @@ export default {
     aboutMission: "Our mission & values",
     visionRdc: "DRC → Africa → World",
     engineers6: "6 specializations available",
-    mstoreDesc: "Business management system — 100+ modules, 92 features, $2/month",
+    mstoreDesc: "Business management system — 100+ modules, 92 features, $5/month (SME) · $15/month (NGO)",
     mstoreOnline: "Online",
     preview: "Overview & video demo",
     modules29short: "100+ modules",
@@ -352,5 +352,165 @@ export default {
     es: "Español",
     de: "Deutsch",
     nl: "Nederlands",
+  },
+  home: {
+    "nav": {
+      "products": "Products",
+      "services": "Services",
+      "vision": "Vision",
+      "team": "Engineers",
+      "contact": "Contact",
+      "quote": "Request a quote",
+      "menu": "Menu",
+      "appearance": "Appearance",
+      "careers": "Careers",
+      "privacy": "Privacy"
+    },
+    "hero": {
+      "eyebrow": "Full Stack IT Company · Kinshasa",
+      "title1": "Software that keeps",
+      "titleAccent": "your organisation running.",
+      "subtitle": "M-NETHUB designs and operates its own products: email, business management, marketplace, hospital management and cloud. One publisher, one standard of quality.",
+      "ctaProducts": "Explore our products",
+      "ctaQuote": "Request a quote",
+      "r1": "6 live products",
+      "r2": "Dedicated engineering team",
+      "r3": "Support in French and English",
+      "mockTitle": "M-NETHUB workspace",
+      "chip1": "New message received",
+      "chip1s": "M-Mail · just now",
+      "chip2": "Sale recorded",
+      "chip2s": "M-Store · at the till"
+    },
+    "figures": [
+      {
+        "v": "6",
+        "l": "products in production"
+      },
+      {
+        "v": "13",
+        "l": "areas of expertise"
+      },
+      {
+        "v": "5",
+        "l": "site languages"
+      },
+      {
+        "v": "DRC → World",
+        "l": "our ambition"
+      }
+    ],
+    "products": {
+      "label": "Our products",
+      "title": "A family of products, one team",
+      "subtitle": "Each product solves a specific need and works on its own. Together they cover email, sales, healthcare and hosting.",
+      "items": {
+        "mmail": {
+          "name": "M-Mail",
+          "badge": "Email",
+          "tag": "Your organisation's professional email",
+          "desc": "Your teams read and write their work email from a single app, on mobile and desktop. One price per organisation, not per person.",
+          "points": [
+            "$10/month for 13 mailboxes",
+            "10-day free trial",
+            "Notifications and offline mode"
+          ],
+          "cta": "Discover M-Mail"
+        },
+        "mmarket": {
+          "name": "M-Market",
+          "badge": "Mobile app",
+          "tag": "Local shopping, made simple",
+          "desc": "Find products near you from local businesses and individual sellers, and follow your order all the way to delivery.",
+          "points": [
+            "Search by photo",
+            "Real-time order tracking",
+            "Become a courier from the app"
+          ],
+          "cta": "Discover M-Market"
+        },
+        "mstoremobile": {
+          "name": "M-Store Mobile",
+          "badge": "Mobile app",
+          "tag": "Your business in your pocket",
+          "desc": "Follow your sales, stock and team from your phone, on the same account as M-Store.",
+          "points": [
+            "Real-time sales and stock",
+            "Team management",
+            "Useful notifications"
+          ],
+          "cta": "Request access"
+        },
+        "mstore": {
+          "name": "M-Store",
+          "badge": "Business management",
+          "tag": "The all-in-one business management system",
+          "desc": "Sales, stock, finance, HR, customers: a complete platform for SMEs, shops and NGOs, with a public online shop.",
+          "points": [
+            "100+ modules, 92 features",
+            "Multi-currency and multi-branch",
+            "From $5/month (SME) · $15/month (NGO)"
+          ],
+          "cta": "See pricing"
+        },
+        "mhms": {
+          "name": "M-HMS",
+          "badge": "Healthcare",
+          "tag": "Hospital management, one workspace per role",
+          "desc": "Patients, consultations, laboratory, pharmacy, billing and statistics: every role in the facility works in its own space.",
+          "points": [
+            "20 clinical and admin modules",
+            "Electronic patient record",
+            "One workspace per role"
+          ],
+          "cta": "Request a demo"
+        },
+        "mcloud": {
+          "name": "M-Cloud",
+          "badge": "Cloud",
+          "tag": "Cloud and hosting run by engineers",
+          "desc": "Websites, applications and backups hosted and monitored by our team, so you can focus on your business.",
+          "points": [
+            "Web and app hosting",
+            "Backups and monitoring",
+            "Support from our engineers"
+          ],
+          "cta": "Visit M-Cloud"
+        }
+      }
+    },
+    "spotlight": {
+      "label": "M-Store in detail",
+      "title": "One dashboard to run your whole business",
+      "subtitle": "Discover the interface of M-Store, M-NETHUB's business management system.",
+      "demo": "Watch the video demo",
+      "hideDemo": "Hide the video",
+      "open": "Open M-Store"
+    },
+    "why": {
+      "label": "Why M-NETHUB",
+      "title": "The publisher behind your tools",
+      "subtitle": "We run our own products: what you use, we maintain every single day."
+    },
+    "team": {
+      "cta": "Contact us"
+    },
+    "cta": {
+      "title": "Got a project? Let's talk.",
+      "text": "Describe what you need: we will get back to you quickly with a clear proposal.",
+      "primary": "Request a quote",
+      "secondary": "Write to us"
+    },
+    "footer": {
+      "tagline": "Full Stack IT Company — Kinshasa, DRC.",
+      "pTitle": "Products",
+      "cTitle": "Company",
+      "lTitle": "Legal",
+      "careers": "Careers",
+      "privacy": "Privacy policy",
+      "mailPrivacy": "M-Mail privacy",
+      "marketPrivacy": "M-Market privacy",
+      "rights": "All rights reserved."
+    }
   },
 }

@@ -33,7 +33,7 @@ const router = useRouter();
         </Badge>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           Protection de vos
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text">
             données personnelles
           </span>
         </h1>

@@ -35,7 +35,7 @@ const highlights = [
           <div class="bg-gradient-to-tr from-primary via-primary/70 to-primary rounded-lg w-8 h-8 flex items-center justify-center">
             <Zap class="w-4 h-4 text-primary-foreground" />
           </div>
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text font-extrabold text-xl">
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text font-extrabold text-xl">
             M-NETHUB
           </span>
         </a>
@@ -60,7 +60,7 @@ const highlights = [
         <Badge variant="outline" class="mb-4">Nos offres M-STORE</Badge>
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           Gérez tout votre commerce avec
-          <span class="text-transparent bg-gradient-to-r from-primary to-[#0099BB] bg-clip-text">M-STORE</span>
+          <span class="text-transparent bg-gradient-to-r from-primary to-gold bg-clip-text">M-STORE</span>
         </h1>
         <p class="text-xl text-muted-foreground mb-8">
           Le premier projet M-NETHUB — un système de gestion commerciale complet avec 29 modules
@@ -125,7 +125,7 @@ const highlights = [
             <CardHeader>
               <Badge class="w-fit mx-auto mb-2">Plus populaire</Badge>
               <CardTitle class="text-5xl font-extrabold">
-                $2
+                $5
                 <span class="text-xl font-normal text-muted-foreground">/mois</span>
               </CardTitle>
               <p class="text-muted-foreground">Accès complet à toutes les fonctionnalités M-STORE</p>
@@ -152,11 +152,12 @@ const highlights = [
         <div v-if="activeTab === 'ong'" class="max-w-lg mx-auto">
           <Card class="border-2 border-primary/40 text-center">
             <CardHeader>
-              <Badge variant="outline" class="w-fit mx-auto mb-2 border-amber-500/40 text-amber-600 dark:text-amber-400">
-                Bientôt disponible
-              </Badge>
-              <CardTitle class="text-4xl font-extrabold">Sur devis</CardTitle>
-              <p class="text-muted-foreground">Tarification adaptée à votre organisation</p>
+              <Badge variant="outline" class="w-fit mx-auto mb-2">ONG / Organisation</Badge>
+              <CardTitle class="text-5xl font-extrabold">
+                $15
+                <span class="text-xl font-normal text-muted-foreground">/mois</span>
+              </CardTitle>
+              <p class="text-muted-foreground">Toutes les fonctionnalités M-STORE + le module ONG</p>
             </CardHeader>
             <CardContent class="space-y-3 text-left">
               <div v-for="f in ['Gestion du stock interne (dons, distributions)', 'Finance dédiée ONG (missions, per diem)', 'RH & missions terrain', 'Appels d\'offres & AMI', 'Matching automatique avec commerces', 'Chat temps réel inter-organisations', 'Tableau de bord Organisation']"
@@ -166,11 +167,11 @@ const highlights = [
               </div>
             </CardContent>
             <div class="p-6 pt-0 flex flex-col gap-3">
-              <Button class="w-full font-bold" @click="router.push('/#contact')">
-                Nous contacter
+              <Button class="w-full font-bold" as-child>
+                <a :href="mstoreUrl" target="_blank">Accéder à M-STORE</a>
               </Button>
-              <Button variant="outline" class="w-full" @click="router.push('/#devis')">
-                Demander un devis
+              <Button variant="outline" class="w-full" @click="router.push('/#contact')">
+                Nous contacter
               </Button>
             </div>
           </Card>
@@ -182,7 +183,7 @@ const highlights = [
         <div class="container max-w-2xl mx-auto">
           <h2 class="text-3xl font-bold mb-4">Prêt à commencer ?</h2>
           <p class="text-muted-foreground mb-8">
-            Enregistrez votre commerce dès maintenant et accédez à M-STORE pour seulement $2/mois.
+            Enregistrez votre commerce dès maintenant et accédez à M-STORE à partir de $5/mois (commerce / PME) ou $15/mois (ONG).
           </p>
           <div class="flex flex-wrap justify-center gap-4">
             <Button class="font-bold gap-2" @click="router.push('/creer-commerce')">

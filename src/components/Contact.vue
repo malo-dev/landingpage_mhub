@@ -67,30 +67,28 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <section id="contact" class="container py-24 sm:py-32">
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section id="contact" class="section-pad border-t border-border">
+    <div class="container grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <div v-animate="'fade-left'">
-        <div class="mb-4">
-          <div class="section-eyebrow mb-3">{{ t('contact.label') }}</div>
-          <h2 class="text-3xl md:text-4xl font-bold">{{ t('contact.title') }}</h2>
-        </div>
-        <p class="mb-8 text-muted-foreground lg:w-5/6">{{ t('contact.subtitle') }}</p>
+        <span class="kicker">{{ t('contact.label') }}</span>
+        <h2 class="section-title">{{ t('contact.title') }}</h2>
+        <p class="section-lead mb-8 lg:w-5/6">{{ t('contact.subtitle') }}</p>
 
-        <div class="flex flex-col gap-6">
-          <div>
-            <div class="flex gap-2 mb-1"><Building2 class="text-primary" /><div class="font-bold">{{ t('contact.address') }}</div></div>
+        <div class="flex flex-col gap-3">
+          <div class="surface-card !transform-none p-4">
+            <div class="flex gap-2 mb-1"><Building2 class="size-5 text-primary" /><div class="font-bold">{{ t('contact.address') }}</div></div>
             <div class="text-muted-foreground">{{ t('contact.addressValue') }}</div>
           </div>
-          <div>
-            <div class="flex gap-2 mb-1"><Phone class="text-primary" /><div class="font-bold">{{ t('contact.phone') }}</div></div>
+          <div class="surface-card !transform-none p-4">
+            <div class="flex gap-2 mb-1"><Phone class="size-5 text-primary" /><div class="font-bold">{{ t('contact.phone') }}</div></div>
             <div class="text-muted-foreground">{{ t('contact.phoneValue') }}</div>
           </div>
-          <div>
-            <div class="flex gap-2 mb-1"><Mail class="text-primary" /><div class="font-bold">{{ t('contact.email') }}</div></div>
+          <div class="surface-card !transform-none p-4">
+            <div class="flex gap-2 mb-1"><Mail class="size-5 text-primary" /><div class="font-bold">{{ t('contact.email') }}</div></div>
             <div class="text-muted-foreground">{{ t('contact.emailValue') }}</div>
           </div>
-          <div>
-            <div class="flex gap-2 mb-1"><Clock class="text-primary" /><div class="font-bold">{{ t('contact.availability') }}</div></div>
+          <div class="surface-card !transform-none p-4">
+            <div class="flex gap-2 mb-1"><Clock class="size-5 text-primary" /><div class="font-bold">{{ t('contact.availability') }}</div></div>
             <div class="text-muted-foreground">
               <div>{{ t('contact.availHours') }}</div>
               <div>{{ t('contact.availUrgency') }}</div>
@@ -100,8 +98,8 @@ const handleSubmit = async () => {
       </div>
 
       <!-- Form -->
-      <Card v-animate="'fade-right'" class="bg-muted/60 dark:bg-card">
-        <CardHeader class="text-primary text-2xl font-semibold pb-0">{{ t('contact.formTitle') }}</CardHeader>
+      <Card v-animate="'fade-right'" class="rounded-[22px] border-border bg-card p-1 shadow-lg">
+        <CardHeader class="font-display text-2xl font-extrabold pb-0">{{ t('contact.formTitle') }}</CardHeader>
         <CardContent class="pt-4">
           <form @submit.prevent="handleSubmit" class="grid gap-4">
             <div class="flex flex-col md:flex-row gap-4">
@@ -172,6 +170,6 @@ const handleSubmit = async () => {
         </CardContent>
         <CardFooter></CardFooter>
       </Card>
-    </section>
+    </div>
   </section>
 </template>
