@@ -17,6 +17,6 @@ export const products: Product[] = [
   { key: "mmarket", icon: ShoppingBag, color: "#c2570c", href: "/m-market" },
   { key: "mstoremobile", icon: Smartphone, color: "#0e9f6e", href: "#contact" },
   { key: "mstore", icon: Store, color: "#0891b2", href: "/offres" },
-  { key: "mhms", icon: HeartPulse, color: "#e11d48", href: "#contact" },
+  { key: "mhms", icon: HeartPulse, color: "#e11d48", href: "https://m-mail-admin.vercel.app/", external: true },
   { key: "mcloud", icon: Cloud, color: "#2b8be0", href: "https://ishara.test.bimreseau.com/", external: true },
 ];
