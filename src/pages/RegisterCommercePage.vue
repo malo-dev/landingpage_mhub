@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, Loader2, Store, Building2,
-  Clock, CreditCard, MailCheck, LayoutDashboard, Boxes, ShieldCheck, Pencil,
+  Clock, CreditCard, MailCheck, LayoutDashboard, Boxes, ShieldCheck, Pencil, GraduationCap,
 } from "lucide-vue-next";
 import LogoMnethub from "@/components/LogoMnethub.vue";
 import api from "@/services/api";
@@ -20,14 +20,18 @@ const success = ref(false);
 const form = reactive({
   commercename: "",
   commerceemail: "",
-  type: "store" as "store" | "organisation",
+  type: "store" as "store" | "organisation" | "ecole",
   phone: "",
   address: "",
   about: "",
 });
 
 // Tarifs M-STORE (mensuels, en USD) — affichés seulement, la facturation se règle après validation.
-const price = computed(() => (form.type === "store" ? 5 : 15));
+// Tarif École : aligné sur celui des organisations (à ajuster ici si besoin).
+const PRICES = { store: 5, organisation: 15, ecole: 15 } as const;
+const TYPE_LABEL = { store: "commerce / PME", organisation: "ONG / Organisation", ecole: "École / Académie" } as const;
+const TYPE_ICON = { store: Store, organisation: Building2, ecole: GraduationCap } as const;
+const price = computed(() => PRICES[form.type]);
 
 const perks = [
   { icon: Boxes, text: "100+ modules : stock, ventes, finances, RH, clients" },
@@ -42,7 +46,7 @@ const goBack = () => {
 
 const nextStep = () => {
   error.value = "";
-  if (!form.commercename.trim()) { error.value = "Le nom de l'entreprise est requis."; return; }
+  if (!form.commercename.trim()) { error.value = form.type === "ecole" ? "Le nom de l'établissement est requis." : "Le nom de l'entreprise est requis."; return; }
   if (!form.commerceemail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.commerceemail)) {
     error.value = "Un email valide est requis.";
     return;
@@ -108,7 +112,7 @@ const handleSubmit = async () => {
       <!-- Tarif selon le type choisi -->
       <div class="relative rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur">
         <div class="text-[12px] font-semibold uppercase tracking-wider text-white/70">
-          Abonnement après validation · {{ form.type === 'store' ? 'Commerce / PME' : 'ONG / Organisation' }}
+          Abonnement après validation · {{ TYPE_LABEL[form.type] }}
         </div>
         <div class="mt-1 flex items-baseline gap-1.5">
           <span class="font-display text-4xl font-extrabold tracking-tight">${{ price }}</span>
@@ -170,7 +174,7 @@ const handleSubmit = async () => {
                   <p class="font-semibold">Lien d'abonnement par email</p>
                   <p class="text-sm text-muted-foreground">
                     Après validation, activez M-STORE à <strong class="text-primary">${{ price }}/mois</strong>
-                    ({{ form.type === 'store' ? 'commerce / PME' : 'ONG' }}).
+                    ({{ TYPE_LABEL[form.type] }}).
                   </p>
                 </div>
               </li>
@@ -209,7 +213,7 @@ const handleSubmit = async () => {
               <!-- Étape 1 -->
               <form v-if="step === 1" class="space-y-5" @submit.prevent="nextStep">
                 <div class="space-y-1.5">
-                  <Label>Nom de l'entreprise <span class="text-destructive">*</span></Label>
+                  <Label>{{ form.type === 'ecole' ? "Nom de l'établissement" : "Nom de l'entreprise" }} <span class="text-destructive">*</span></Label>
                   <Input v-model="form.commercename" placeholder="Ex : Boutique Chez Marie" autocomplete="organization" />
                 </div>
                 <div class="space-y-1.5">
@@ -219,7 +223,7 @@ const handleSubmit = async () => {
 
                 <div class="space-y-2">
                   <Label>Type d'entreprise</Label>
-                  <div class="grid gap-3 sm:grid-cols-2">
+                  <div class="grid gap-3 sm:grid-cols-3">
                     <button
                       type="button"
                       class="relative rounded-2xl border-2 p-4 text-left transition-all"
@@ -231,7 +235,7 @@ const handleSubmit = async () => {
                       <span class="grid size-10 place-items-center rounded-xl" :class="form.type === 'store' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'"><Store class="size-5" /></span>
                       <p class="mt-3 text-sm font-bold">Entreprise / PME</p>
                       <p class="mt-0.5 text-xs text-muted-foreground">Commerce, boutique, société</p>
-                      <p class="mt-2 text-sm font-bold text-primary">$5 <span class="font-medium text-muted-foreground">/ mois</span></p>
+                      <p class="mt-2 text-sm font-bold text-primary">${{ PRICES.store }} <span class="font-medium text-muted-foreground">/ mois</span></p>
                     </button>
                     <button
                       type="button"
@@ -244,7 +248,20 @@ const handleSubmit = async () => {
                       <span class="grid size-10 place-items-center rounded-xl" :class="form.type === 'organisation' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'"><Building2 class="size-5" /></span>
                       <p class="mt-3 text-sm font-bold">Organisation</p>
                       <p class="mt-0.5 text-xs text-muted-foreground">ONG, institution, association</p>
-                      <p class="mt-2 text-sm font-bold text-primary">$15 <span class="font-medium text-muted-foreground">/ mois</span></p>
+                      <p class="mt-2 text-sm font-bold text-primary">${{ PRICES.organisation }} <span class="font-medium text-muted-foreground">/ mois</span></p>
+                    </button>
+                    <button
+                      type="button"
+                      class="relative rounded-2xl border-2 p-4 text-left transition-all"
+                      :class="form.type === 'ecole' ? 'border-primary bg-primary/[0.06] shadow-sm' : 'border-border hover:border-foreground/30'"
+                      :aria-pressed="form.type === 'ecole'"
+                      @click="form.type = 'ecole'"
+                    >
+                      <CheckCircle2 v-if="form.type === 'ecole'" class="absolute right-3 top-3 size-5 text-primary" />
+                      <span class="grid size-10 place-items-center rounded-xl" :class="form.type === 'ecole' ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'"><GraduationCap class="size-5" /></span>
+                      <p class="mt-3 text-sm font-bold">École</p>
+                      <p class="mt-0.5 text-xs text-muted-foreground">École, académie, université</p>
+                      <p class="mt-2 text-sm font-bold text-primary">${{ PRICES.ecole }} <span class="font-medium text-muted-foreground">/ mois</span></p>
                     </button>
                   </div>
                 </div>
@@ -262,7 +279,7 @@ const handleSubmit = async () => {
               <form v-else class="space-y-5" @submit.prevent="handleSubmit">
                 <div class="flex items-center gap-3 rounded-xl bg-muted px-4 py-3">
                   <span class="grid size-10 flex-shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <component :is="form.type === 'store' ? Store : Building2" class="size-5" />
+                    <component :is="TYPE_ICON[form.type]" class="size-5" />
                   </span>
                   <div class="min-w-0 flex-1">
                     <p class="truncate text-sm font-bold">{{ form.commercename }}</p>

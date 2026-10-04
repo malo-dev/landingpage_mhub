@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Zap, ArrowLeft, Search, RefreshCw, Store, Building2, Loader2, AlertCircle, CheckCircle2 } from "lucide-vue-next";
+import { Zap, ArrowLeft, Search, RefreshCw, Store, Building2, GraduationCap, Loader2, AlertCircle, CheckCircle2 } from "lucide-vue-next";
 import api from "@/services/api";
 
 const router = useRouter();
@@ -20,7 +20,7 @@ interface CommerceResult {
   commerceId: number;
   commercename: string;
   commerceemail: string;
-  type: "store" | "organisation";
+  type: "store" | "organisation" | "ecole";
   imageUrl: string | null;
   isActive: boolean;
   subscription: { status: string; renewToken: string; expiresAt: string | null } | null;
@@ -207,13 +207,13 @@ const statusVariant = (status: string) => {
                     class="w-full h-full object-cover"
                     @error="($event.target as HTMLImageElement).style.display = 'none'"
                   />
-                  <component :is="c.type === 'store' ? Store : Building2" class="size-6 text-muted-foreground" v-else />
+                  <component :is="c.type === 'store' ? Store : c.type === 'ecole' ? GraduationCap : Building2" class="size-6 text-muted-foreground" v-else />
                 </div>
                 <div>
                   <h3 class="font-bold">{{ c.commercename }}</h3>
                   <p class="text-sm text-muted-foreground">{{ c.commerceemail }}</p>
                   <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs text-muted-foreground">{{ c.type === 'store' ? 'Magasin' : 'Organisation' }}</span>
+                    <span class="text-xs text-muted-foreground">{{ c.type === 'store' ? 'Magasin' : c.type === 'ecole' ? 'École' : 'Organisation' }}</span>
                     <span class="text-muted-foreground">·</span>
                     <span
                       v-if="c.subscription"
@@ -263,7 +263,7 @@ const statusVariant = (status: string) => {
                   class="w-full h-full object-cover"
                   @error="($event.target as HTMLImageElement).style.display = 'none'"
                 />
-                <component :is="selected.type === 'store' ? Store : Building2" class="size-5 text-primary" v-else />
+                <component :is="selected.type === 'store' ? Store : selected.type === 'ecole' ? GraduationCap : Building2" class="size-5 text-primary" v-else />
               </div>
               <div>
                 <p class="font-bold text-sm">{{ selected.commercename }}</p>

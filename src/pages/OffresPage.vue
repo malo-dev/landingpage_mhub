@@ -7,12 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import {
   Zap, ArrowLeft, ArrowRight, ExternalLink, Check,
   Store, Building2, BarChart3, Package, Users,
-  DollarSign, ShoppingCart, Truck, Bell, LayoutDashboard,
+  DollarSign, ShoppingCart, Truck, Bell, LayoutDashboard, GraduationCap,
 } from "lucide-vue-next";
 
 const router = useRouter();
 const mstoreUrl = import.meta.env.VITE_MSTORE_URL as string;
-const activeTab = ref<"commercial" | "ong">("commercial");
+const activeTab = ref<"commercial" | "ong" | "ecole">("commercial");
 
 const highlights = [
   { icon: LayoutDashboard, label: "Tableau de bord temps réel", desc: "KPIs, CA, alertes stock en un coup d'œil" },
@@ -116,6 +116,14 @@ const highlights = [
               <Building2 class="size-4" />
               ONG / Organisation
             </button>
+            <button
+              @click="activeTab = 'ecole'"
+              :class="['flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all text-sm',
+                activeTab === 'ecole' ? 'bg-primary text-primary-foreground shadow-md' : 'text-muted-foreground hover:text-foreground']"
+            >
+              <GraduationCap class="size-4" />
+              École
+            </button>
           </div>
         </div>
 
@@ -176,6 +184,35 @@ const highlights = [
             </div>
           </Card>
         </div>
+
+        <!-- École plan -->
+        <div v-if="activeTab === 'ecole'" class="max-w-lg mx-auto">
+          <Card class="border-2 border-primary/40 text-center">
+            <CardHeader>
+              <Badge variant="outline" class="w-fit mx-auto mb-2">École / Académie</Badge>
+              <CardTitle class="text-5xl font-extrabold">
+                $15
+                <span class="text-xl font-normal text-muted-foreground">/mois</span>
+              </CardTitle>
+              <p class="text-muted-foreground">La gestion complète de votre établissement scolaire</p>
+            </CardHeader>
+            <CardContent class="space-y-3 text-left">
+              <div v-for="f in ['Admissions en ligne & inscriptions', 'Fiches élèves (contacts, médical, notes, documents)', 'Classes, sections, filières & effectifs', 'Enseignants, affectations & charges horaires', 'Matières, cours, programmes & syllabus', 'Frais scolaires, factures, bourses & encaissements', 'Tableau de bord académique en temps réel', 'Application mobile incluse']"
+                :key="f" class="flex items-center gap-2">
+                <Check class="size-4 text-primary flex-shrink-0" />
+                <span>{{ f }}</span>
+              </div>
+            </CardContent>
+            <div class="p-6 pt-0 flex flex-col gap-3">
+              <Button class="w-full font-bold" as-child>
+                <a :href="mstoreUrl" target="_blank">Accéder à M-STORE</a>
+              </Button>
+              <Button variant="outline" class="w-full" @click="router.push('/creer-commerce')">
+                Inscrire mon école
+              </Button>
+            </div>
+          </Card>
+        </div>
       </section>
 
       <!-- CTA -->
@@ -183,7 +220,7 @@ const highlights = [
         <div class="container max-w-2xl mx-auto">
           <h2 class="text-3xl font-bold mb-4">Prêt à commencer ?</h2>
           <p class="text-muted-foreground mb-8">
-            Enregistrez votre commerce dès maintenant et accédez à M-STORE à partir de $5/mois (commerce / PME) ou $15/mois (ONG).
+            Enregistrez votre commerce dès maintenant et accédez à M-STORE à partir de $5/mois (commerce / PME) ou $15/mois (ONG, école).
           </p>
           <div class="flex flex-wrap justify-center gap-4">
             <Button class="font-bold gap-2" @click="router.push('/creer-commerce')">
