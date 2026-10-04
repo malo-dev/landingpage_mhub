@@ -13,6 +13,9 @@ import MarketMarketingPage from '@/pages/MarketMarketingPage.vue';
 import MarketPrivacyChoicesPage from '@/pages/MarketPrivacyChoicesPage.vue';
 import MailPrivacyPage from '@/pages/MailPrivacyPage.vue';
 import MailAccountDeletionPage from '@/pages/MailAccountDeletionPage.vue';
+import MStoreMarketingPage from '@/pages/MStoreMarketingPage.vue';
+import MStoreSupportPage from '@/pages/MStoreSupportPage.vue';
+import MStoreAccountDeletionPage from '@/pages/MStoreAccountDeletionPage.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -29,6 +32,10 @@ const router = createRouter({
     { path: '/contact',                      component: ContactPage },
     { path: '/carrieres',                    component: CarrieresPage },
     { path: '/politique-confidentialite',    component: PolitiqueConfidentialitePage },
+    { path: '/m-store',                      component: MStoreMarketingPage },
+    { path: '/m-store/support',              component: MStoreSupportPage },
+    { path: '/m-store/confidentialite',      component: PolitiqueConfidentialitePage },
+    { path: '/m-store/suppression-compte',   component: MStoreAccountDeletionPage },
     { path: '/m-market',                     component: MarketMarketingPage },
     { path: '/m-market/confidentialite',     component: MarketPrivacyPage },
     { path: '/m-market/suppression-compte',  component: MarketAccountDeletionPage },

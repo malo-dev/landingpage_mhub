@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Shield, Lock, Eye, Database, Server, UserCheck, AlertTriangle, Mail } from "lucide-vue-next";
+import { ArrowLeft, Shield, Lock, Eye, Database, Server, UserCheck, AlertTriangle, Mail, Smartphone, Trash2 } from "lucide-vue-next";
 import logoMnethub from "@/assets/logo-mnethub.svg";
 
 const router = useRouter();
@@ -94,7 +94,7 @@ const router = useRouter();
             <div class="bg-muted/50 dark:bg-card border rounded-xl p-4">
               <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-primary">Données du commerce</p>
               <ul class="text-sm text-muted-foreground space-y-1">
-                <li>• Nom et type du commerce (boutique / organisation)</li>
+                <li>• Nom et type du commerce (boutique / organisation / école)</li>
                 <li>• Adresse, devise, branches</li>
                 <li>• Logo et informations d'affichage</li>
                 <li>• Abonnement et renouvellements</li>
@@ -127,6 +127,70 @@ const router = useRouter();
                 <li>• Dossiers RH (gérés par le commerce)</li>
               </ul>
             </div>
+          </div>
+        </section>
+
+        <!-- 2 bis. Application mobile -->
+        <section id="application-mobile" class="scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-primary/10 p-2 rounded-lg"><Smartphone class="size-5 text-primary" /></div>
+            <h2 class="text-2xl font-bold">2 bis. Application mobile M-STORE</h2>
+          </div>
+          <p class="text-muted-foreground mb-6">
+            L'application mobile M-STORE (Android et iOS) demande certaines autorisations de l'appareil.
+            Chacune n'est utilisée <strong>que pour la fonction indiquée</strong>, uniquement lorsque vous l'activez,
+            et aucune de ces données n'est vendue ni partagée à des fins publicitaires.
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-muted/50 dark:bg-card border rounded-xl p-4">
+              <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-primary">Localisation (GPS)</p>
+              <ul class="text-sm text-muted-foreground space-y-1">
+                <li>• Pointage des employés par QR code : la position est vérifiée au moment du pointage pour confirmer la présence sur le lieu de travail.</li>
+                <li>• Espace chauffeur : pendant une tournée de livraison démarrée par le chauffeur, la position du véhicule est envoyée à son organisation,
+                  <strong>y compris lorsque l'application est en arrière-plan ou l'écran verrouillé</strong>. Une notification permanente l'indique.
+                  Le suivi s'arrête automatiquement à la fin de la tournée.</li>
+                <li>• Aucune position n'est collectée en dehors de ces deux usages.</li>
+              </ul>
+            </div>
+            <div class="bg-muted/50 dark:bg-card border rounded-xl p-4">
+              <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-primary">Caméra et photos</p>
+              <ul class="text-sm text-muted-foreground space-y-1">
+                <li>• Scanner les codes-barres des produits et les QR codes (billets, pointage, accès agent).</li>
+                <li>• Prendre ou choisir une photo (logo, produit, colis, document).</li>
+                <li>• Les images ne sont envoyées que lorsque vous les enregistrez dans un formulaire.</li>
+              </ul>
+            </div>
+            <div class="bg-muted/50 dark:bg-card border rounded-xl p-4">
+              <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-primary">Microphone</p>
+              <ul class="text-sm text-muted-foreground space-y-1">
+                <li>• Enregistrer un message vocal dans la messagerie interne, uniquement quand vous appuyez sur le bouton d'enregistrement.</li>
+              </ul>
+            </div>
+            <div class="bg-muted/50 dark:bg-card border rounded-xl p-4">
+              <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-primary">Notifications et stockage local</p>
+              <ul class="text-sm text-muted-foreground space-y-1">
+                <li>• Notifications : nouvelles commandes, messages et alertes de votre commerce. Elles peuvent être désactivées dans les réglages du téléphone.</li>
+                <li>• Mode hors connexion : les données déjà consultées et les actions en attente sont conservées sur l'appareil, puis synchronisées au retour du réseau.</li>
+                <li>• Les jetons de connexion sont stockés dans le stockage sécurisé de l'appareil.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 ter. Suppression du compte -->
+        <section id="suppression-compte" class="scroll-mt-24">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-primary/10 p-2 rounded-lg"><Trash2 class="size-5 text-primary" /></div>
+            <h2 class="text-2xl font-bold">2 ter. Supprimer votre compte</h2>
+          </div>
+          <div class="text-muted-foreground space-y-3 text-sm">
+            <p><strong class="text-foreground">Depuis l'application mobile :</strong> Profil → Paramètres → <em>Supprimer mon compte</em>. La suppression est immédiate et définitive.</p>
+            <p><strong class="text-foreground">Sans l'application :</strong> écrivez à
+              <a href="mailto:contact@m-nethub.tech?subject=Suppression%20de%20compte%20M-STORE" class="text-primary hover:underline">contact@m-nethub.tech</a>
+              depuis l'adresse e-mail de votre compte, avec l'objet « Suppression de compte M-STORE ». La demande est traitée sous 72 heures ouvrables.</p>
+            <p>Sont supprimés : votre profil, vos identifiants et vos préférences. Les données appartenant à votre commerce ou organisation
+              (ventes, factures, dossiers RH…) restent sous la responsabilité de celui-ci et suivent les règles de conservation de la section 6 ;
+              les journaux d'audit sont conservés 12 mois.</p>
           </div>
         </section>
 

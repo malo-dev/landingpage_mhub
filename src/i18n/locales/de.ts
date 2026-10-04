@@ -510,6 +510,8 @@ export default {
       "privacy": "Datenschutzerklärung",
       "mailPrivacy": "Datenschutz M-Mail",
       "marketPrivacy": "Datenschutz M-Market",
+      "mstoreApp": "M-STORE App",
+      "mstoreSupport": "M-STORE Support",
       "rights": "Alle Rechte vorbehalten."
     }
   },

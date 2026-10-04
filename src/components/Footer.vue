@@ -18,6 +18,8 @@ const legal = [
   { label: () => t("home.footer.privacy"), href: "/politique-confidentialite" },
   { label: () => t("home.footer.mailPrivacy"), href: "/m-mail/confidentialite" },
   { label: () => t("home.footer.marketPrivacy"), href: "/m-market/confidentialite" },
+  { label: () => t("home.footer.mstoreApp"), href: "/m-store" },
+  { label: () => t("home.footer.mstoreSupport"), href: "/m-store/support" },
 ];
 </script>
 
