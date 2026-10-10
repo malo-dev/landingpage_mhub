@@ -439,7 +439,7 @@ export default {
             "Team management",
             "Useful notifications"
           ],
-          "cta": "Request access"
+          "cta": "Discover the mobile app"
         },
         "mstore": {
           "name": "M-Store",
@@ -451,7 +451,7 @@ export default {
             "Multi-currency and multi-branch",
             "From $5/month (SME) · $15/month (NGO)"
           ],
-          "cta": "See pricing"
+          "cta": "Discover M-Store"
         },
         "mhms": {
           "name": "M-HMS",

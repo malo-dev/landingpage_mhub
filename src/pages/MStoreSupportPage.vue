@@ -11,8 +11,8 @@ const faq = [
   { q: "J'ai oublié mon mot de passe ou mon code d'accès", a: "Sur l'écran de connexion, touchez « Mot de passe oublié » ou « Code oublié » : un nouveau code vous est envoyé par e-mail." },
   { q: "L'application fonctionne-t-elle sans internet ?", a: "Oui. Les données déjà ouvertes restent consultables et vos actions (ventes, pointages, livraisons…) sont mises en attente puis envoyées automatiquement au retour du réseau." },
   { q: "Pourquoi l'app demande-t-elle ma position en arrière-plan ?", a: "Uniquement dans l'espace chauffeur, pendant une tournée de livraison que vous avez démarrée, pour que votre organisation suive le véhicule. Le suivi s'arrête à la fin de la tournée. Vous pouvez refuser : le suivi fonctionnera alors seulement app ouverte." },
-  { q: "Comment créer un espace pour mon commerce, mon ONG ou mon école ?", a: "Inscrivez-vous gratuitement sur m-nethub.tech/creer-commerce. Après validation, vous recevez par e-mail le lien d'activation de votre abonnement." },
-  { q: "Mon abonnement a expiré", a: "Renouvelez-le sur m-nethub.tech/reabonnement avec l'e-mail de votre commerce." },
+  { q: "Comment créer un espace pour mon commerce, mon ONG ou mon école ?", a: "Depuis l'application (« Créer un compte entreprise ») ou sur m-nethub.tech/creer-commerce. L'inscription est gratuite ; notre équipe vous contacte par e-mail pour activer votre espace." },
+  { q: "Mon espace n'est plus accessible", a: "Contactez l'administrateur de votre organisation, ou écrivez-nous à contact@m-nethub.tech avec l'e-mail de votre espace : nous vous répondons sous 72 heures ouvrables." },
 ];
 </script>
 

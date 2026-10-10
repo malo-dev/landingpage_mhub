@@ -5,11 +5,13 @@ import { useColorMode } from "@vueuse/core";
 import LogoMnethub from "@/components/LogoMnethub.vue";
 import {
   ArrowLeft, ArrowRight, Store, Building2, GraduationCap, WifiOff, ScanLine, Truck, Users, Wallet,
-  Bell, Smartphone, Check, ChevronRight, Moon, Sun, QrCode, BarChart3, ShieldCheck,
+  Bell, Smartphone, Check, ChevronRight, Moon, Sun, QrCode, BarChart3, ShieldCheck, Monitor, ExternalLink,
 } from "lucide-vue-next";
 
 const router = useRouter();
 const mode = useColorMode();
+// Application web M-STORE (gestion complète sur ordinateur).
+const mstoreUrl = (import.meta.env.VITE_MSTORE_URL as string) || 'https://app.m-nethub.tech';
 const toggleTheme = () => { mode.value = mode.value === "dark" ? "light" : "dark"; };
 
 const features = [
@@ -58,12 +60,16 @@ const access = [
         <nav class="ml-6 hidden items-center gap-0.5 md:flex">
           <a href="#fonctionnalites" class="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Fonctionnalités</a>
           <a href="#espaces" class="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Pour qui ?</a>
+          <a href="#web" class="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Accéder</a>
           <router-link to="/m-store/support" class="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Support</router-link>
         </nav>
         <div class="ml-auto flex items-center gap-2">
           <button class="grid size-10 place-items-center rounded-xl border border-border bg-card transition-colors hover:bg-muted" aria-label="Thème" @click="toggleTheme">
             <Moon v-if="mode !== 'dark'" class="size-[18px]" /><Sun v-else class="size-[18px]" />
           </button>
+          <a :href="mstoreUrl" target="_blank" rel="noopener" class="hidden h-10 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-white sm:inline-flex" style="background: var(--ms-a)">
+            Ouvrir M-STORE <ExternalLink class="size-4" />
+          </a>
           <button class="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-semibold transition-colors hover:bg-muted" @click="router.back()">
             <ArrowLeft class="size-4" /> <span class="hidden sm:inline">Retour</span>
           </button>
@@ -75,24 +81,23 @@ const access = [
     <section class="container grid items-center gap-14 pb-16 pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] lg:pt-20">
       <div>
         <span class="anim-rise inline-flex items-center gap-2 rounded-full border border-border bg-card py-1.5 pl-3 pr-4 text-[12.5px] font-medium text-muted-foreground">
-          <span class="size-[7px] rounded-full" style="background: var(--ms-a)" /> Application M-STORE — par M-NETHUB
+          <span class="size-[7px] rounded-full" style="background: var(--ms-a)" /> M-STORE — web et mobile, par M-NETHUB
         </span>
         <h1 class="anim-rise mt-5 text-[clamp(2.3rem,5.2vw,3.7rem)] font-extrabold leading-[1.05] tracking-[-0.03em]" style="animation-delay: 0.05s">
           Toute votre gestion,
-          <span class="ms-gradient">dans votre poche.</span>
+          <span class="ms-gradient">au bureau comme dans votre poche.</span>
         </h1>
         <p class="anim-rise mt-6 max-w-[540px] text-[17px] leading-relaxed text-muted-foreground" style="animation-delay: 0.1s">
-          Commerce, ONG ou école : pilotez ventes, stock, équipes, finances, logistique et scolarité depuis votre téléphone —
-          même sans connexion internet.
+          Commerce, ONG ou école : pilotez ventes, stock, équipes, finances, logistique et scolarité sur ordinateur et
+          sur téléphone, avec le même compte — même sans connexion internet sur mobile.
         </p>
         <div class="anim-rise mt-8 flex flex-wrap items-center gap-3" style="animation-delay: 0.15s">
-          <div v-for="s in ['App Store', 'Google Play']" :key="s" class="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3 shadow-sm">
-            <Smartphone class="size-6" />
-            <div class="text-left leading-tight">
-              <p class="text-[10px] uppercase tracking-wider text-muted-foreground">Bientôt disponible sur</p>
-              <p class="text-[15px] font-bold">{{ s }}</p>
-            </div>
-          </div>
+          <a :href="mstoreUrl" target="_blank" rel="noopener" class="inline-flex h-12 items-center gap-2 rounded-xl px-6 text-[15px] font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5" style="background: var(--ms-a)">
+            <Monitor class="size-[18px]" /> Ouvrir M-STORE (web)
+          </a>
+          <a href="#mobile" class="inline-flex h-12 items-center gap-2 rounded-xl border border-border bg-card px-6 text-[15px] font-semibold transition-colors hover:bg-muted">
+            <Smartphone class="size-[18px]" /> Application mobile
+          </a>
         </div>
         <p class="anim-rise mt-5 flex items-center gap-2 text-[13px] text-muted-foreground" style="animation-delay: 0.2s">
           <ShieldCheck class="size-4 text-emerald-500" /> Vos données sont cloisonnées par organisation et protégées par rôles et permissions.
@@ -166,7 +171,53 @@ const access = [
       </div>
     </section>
 
-    <section class="container section-pad pt-0">
+
+    <!-- Accéder à M-STORE : web et mobile -->
+    <section class="section-pad border-t border-border bg-muted/60">
+      <div class="container">
+        <div class="mb-10 max-w-2xl">
+          <span class="kicker" style="color: var(--ms-a)">Accéder à M-STORE</span>
+          <h2 class="section-title">Deux façons d'utiliser M-STORE, un seul compte</h2>
+          <p class="section-lead">Vos données sont les mêmes partout : ce que vous faites sur l'un apparaît sur l'autre.</p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div id="web" class="surface-card scroll-mt-24 flex flex-col p-7">
+            <span class="grid size-12 place-items-center rounded-2xl" style="background: color-mix(in srgb, var(--ms-a) 14%, transparent); color: var(--ms-a)"><Monitor class="size-6" /></span>
+            <h3 class="mt-5 text-xl font-extrabold">Application web</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-muted-foreground">La gestion complète sur ordinateur, dans votre navigateur : rien à installer.</p>
+            <ul class="mt-4 space-y-2.5">
+              <li v-for="pt in ['Tous les modules : gestion, RH, finances, logistique, école', 'Grands écrans, exports PDF et Excel', 'Boutique en ligne publique pour vos clients']" :key="pt" class="flex items-start gap-2 text-[14px]"><Check class="mt-0.5 size-4 flex-shrink-0" style="color: var(--ms-a)" /> {{ pt }}</li>
+            </ul>
+            <div class="mt-auto flex flex-wrap gap-3 pt-6">
+              <a :href="mstoreUrl" target="_blank" rel="noopener" class="inline-flex h-11 items-center gap-2 rounded-xl px-5 text-sm font-semibold text-white" style="background: var(--ms-a)">
+                Ouvrir M-STORE <ExternalLink class="size-4" />
+              </a>
+              <router-link to="/creer-commerce" class="inline-flex h-11 items-center rounded-xl border border-border bg-card px-5 text-sm font-semibold hover:bg-muted">Créer mon espace</router-link>
+              <router-link to="/offres" class="inline-flex h-11 items-center rounded-xl px-3 text-sm font-semibold hover:underline" style="color: var(--ms-a)">Voir les offres</router-link>
+            </div>
+          </div>
+          <div id="mobile" class="surface-card scroll-mt-24 flex flex-col p-7">
+            <span class="grid size-12 place-items-center rounded-2xl" style="background: color-mix(in srgb, var(--ms-a) 14%, transparent); color: var(--ms-a)"><Smartphone class="size-6" /></span>
+            <h3 class="mt-5 text-xl font-extrabold">Application mobile</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-muted-foreground">Android et iPhone : pour vendre, pointer et livrer sur le terrain, même sans réseau.</p>
+            <ul class="mt-4 space-y-2.5">
+              <li v-for="pt in ['Fonctionne hors connexion, synchronisation automatique', 'Espaces employé, chauffeur, vendeur et agent d’événement', 'Scan de codes-barres et de QR codes, notifications']" :key="pt" class="flex items-start gap-2 text-[14px]"><Check class="mt-0.5 size-4 flex-shrink-0" style="color: var(--ms-a)" /> {{ pt }}</li>
+            </ul>
+            <div class="mt-auto flex flex-wrap gap-3 pt-6">
+              <div v-for="s in ['App Store', 'Google Play']" :key="s" class="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-2.5">
+                <Smartphone class="size-5" />
+                <div class="text-left leading-tight">
+                  <p class="text-[10px] uppercase tracking-wider text-muted-foreground">Bientôt disponible sur</p>
+                  <p class="text-[14px] font-bold">{{ s }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-pad">
       <div class="relative overflow-hidden rounded-[32px] px-6 py-16 text-center text-white shadow-2xl sm:px-10" style="background: linear-gradient(135deg, #0b1628 0%, #0d4f5e 60%, #00687c 120%)">
         <h2 class="mx-auto max-w-[640px] text-[clamp(1.65rem,3.4vw,2.4rem)] font-extrabold leading-tight">Prêt à gérer depuis votre téléphone ?</h2>
         <p class="mx-auto mt-4 max-w-xl text-[16.5px] text-white/80">Créez votre espace gratuitement, puis connectez-vous dans l'application avec le même compte.</p>

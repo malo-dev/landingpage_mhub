@@ -439,7 +439,7 @@ export default {
             "Gestión del equipo",
             "Notificaciones útiles"
           ],
-          "cta": "Solicitar acceso"
+          "cta": "Descubrir la app móvil"
         },
         "mstore": {
           "name": "M-Store",
@@ -451,7 +451,7 @@ export default {
             "Multidivisa y multisucursal",
             "5 $/mes (pyme) · 15 $/mes (ONG)"
           ],
-          "cta": "Ver tarifas"
+          "cta": "Descubrir M-Store"
         },
         "mhms": {
           "name": "M-HMS",

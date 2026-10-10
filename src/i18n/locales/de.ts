@@ -439,7 +439,7 @@ export default {
             "Teamverwaltung",
             "Nützliche Benachrichtigungen"
           ],
-          "cta": "Zugang anfragen"
+          "cta": "Mobile App entdecken"
         },
         "mstore": {
           "name": "M-Store",
@@ -451,7 +451,7 @@ export default {
             "Mehrwährung und mehrere Filialen",
             "5 $/Monat (KMU) · 15 $/Monat (NGO)"
           ],
-          "cta": "Preise ansehen"
+          "cta": "M-Store entdecken"
         },
         "mhms": {
           "name": "M-HMS",

@@ -15,8 +15,8 @@ export interface Product {
 export const products: Product[] = [
   { key: "mmail", icon: Mail, color: "#4f5bd5", href: "https://m-mail-admin.vercel.app/", external: true },
   { key: "mmarket", icon: ShoppingBag, color: "#c2570c", href: "/m-market" },
-  { key: "mstoremobile", icon: Smartphone, color: "#0e9f6e", href: "#contact" },
-  { key: "mstore", icon: Store, color: "#0891b2", href: "/offres" },
+  { key: "mstoremobile", icon: Smartphone, color: "#0e9f6e", href: "/m-store#mobile" },
+  { key: "mstore", icon: Store, color: "#0891b2", href: "/m-store#web" },
   { key: "mhms", icon: HeartPulse, color: "#e11d48", href: "https://m-mail-admin.vercel.app/", external: true },
   { key: "mcloud", icon: Cloud, color: "#2b8be0", href: "https://ishara.test.bimreseau.com/", external: true },
 ];

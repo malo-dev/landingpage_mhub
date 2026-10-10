@@ -33,6 +33,10 @@ const audiences = [
   { icon: Bike, title: "Livreurs", points: ["Inscription directement dans l'app", "Rejoignez le réseau de livraison", "Missions proches de votre position"] },
 ];
 
+// M-Market est publié sur les deux stores (lien App Store sans code pays : Apple redirige selon la région).
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=tech.mnethub.mmarket';
+const APP_STORE_URL = 'https://apps.apple.com/app/m-market/id6801918986';
+
 const toggleTheme = () => { mode.value = mode.value === "dark" ? "light" : "dark"; };
 </script>
 
@@ -88,20 +92,20 @@ const toggleTheme = () => { mode.value = mode.value === "dark" ? "light" : "dark
         </p>
 
         <div class="anim-rise mt-8 flex flex-wrap items-center gap-3" style="animation-delay: 0.15s">
-          <div class="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3 shadow-sm">
+          <a :href="PLAY_STORE_URL" target="_blank" rel="noopener" class="flex items-center gap-3 rounded-2xl px-5 py-3 text-white shadow-lg transition-all hover:-translate-y-0.5" style="background: linear-gradient(135deg, var(--mm-b), var(--mm-a))" aria-label="Télécharger M-Market sur Google Play">
             <Smartphone class="size-6" />
             <div class="text-left leading-tight">
-              <p class="text-[10px] uppercase tracking-wider text-muted-foreground">Bientôt disponible sur</p>
-              <p class="text-[15px] font-bold">App Store</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-3 shadow-sm">
-            <Smartphone class="size-6" />
-            <div class="text-left leading-tight">
-              <p class="text-[10px] uppercase tracking-wider text-muted-foreground">Bientôt disponible sur</p>
+              <p class="text-[10px] uppercase tracking-wider text-white/80">Disponible sur</p>
               <p class="text-[15px] font-bold">Google Play</p>
             </div>
-          </div>
+          </a>
+          <a :href="APP_STORE_URL" target="_blank" rel="noopener" class="flex items-center gap-3 rounded-2xl border border-border bg-foreground px-5 py-3 text-background shadow-lg transition-all hover:-translate-y-0.5" aria-label="Télécharger M-Market sur l'App Store">
+            <Smartphone class="size-6" />
+            <div class="text-left leading-tight">
+              <p class="text-[10px] uppercase tracking-wider opacity-75">Disponible sur</p>
+              <p class="text-[15px] font-bold">App Store</p>
+            </div>
+          </a>
         </div>
         <p class="anim-rise mt-5 flex items-center gap-2 text-[13px] text-muted-foreground" style="animation-delay: 0.2s">
           <Check class="size-4 text-emerald-500" /> Disponible en français, anglais, lingala et swahili
@@ -234,11 +238,17 @@ const toggleTheme = () => { mode.value = mode.value === "dark" ? "light" : "dark
         <div class="pointer-events-none absolute -right-[8%] -top-[40%] size-[520px] rounded-full" style="background: radial-gradient(circle, rgba(255, 171, 105, 0.45), transparent 65%)" />
         <h2 class="relative mx-auto max-w-[640px] font-display text-[clamp(1.65rem,3.4vw,2.4rem)] font-extrabold leading-tight tracking-tight">Prêt à simplifier votre shopping ?</h2>
         <p class="relative mx-auto mt-4 max-w-xl text-[16.5px] text-white/80">
-          M-Market arrive bientôt sur App Store et Google Play. Envie de vendre plutôt qu'acheter ? Entreprises et particuliers peuvent déjà rejoindre M-Market.
+          M-Market est disponible sur Google Play et sur l'App Store. Envie de vendre plutôt qu'acheter ? Entreprises et particuliers peuvent déjà rejoindre M-Market.
         </p>
         <div class="relative mt-8 flex flex-wrap justify-center gap-3">
-          <a href="/contact" class="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[15px] font-semibold text-[#16181d] transition-all hover:-translate-y-0.5 hover:shadow-xl">
-            Nous contacter <ArrowRight class="size-[18px]" />
+          <a :href="PLAY_STORE_URL" target="_blank" rel="noopener" class="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[15px] font-semibold text-[#16181d] transition-all hover:-translate-y-0.5 hover:shadow-xl">
+            Télécharger sur Google Play <ArrowRight class="size-[18px]" />
+          </a>
+          <a :href="APP_STORE_URL" target="_blank" rel="noopener" class="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-[15px] font-semibold text-[#16181d] transition-all hover:-translate-y-0.5 hover:shadow-xl">
+            Télécharger sur l'App Store <ArrowRight class="size-[18px]" />
+          </a>
+          <a href="/contact" class="inline-flex h-12 items-center rounded-xl border border-white/30 bg-white/10 px-6 text-[15px] font-semibold text-white transition-all hover:bg-white/20">
+            Nous contacter
           </a>
           <a href="/" class="inline-flex h-12 items-center rounded-xl border border-white/30 bg-white/10 px-6 text-[15px] font-semibold text-white transition-all hover:bg-white/20">
             Découvrir M-NETHUB

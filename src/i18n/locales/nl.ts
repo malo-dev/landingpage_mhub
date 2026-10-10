@@ -439,7 +439,7 @@ export default {
             "Teambeheer",
             "Nuttige meldingen"
           ],
-          "cta": "Toegang aanvragen"
+          "cta": "Ontdek de mobiele app"
         },
         "mstore": {
           "name": "M-Store",
@@ -451,7 +451,7 @@ export default {
             "Meerdere valuta en filialen",
             "Vanaf $5/maand (kmo) · $15/maand (ngo)"
           ],
-          "cta": "Bekijk de tarieven"
+          "cta": "Ontdek M-Store"
         },
         "mhms": {
           "name": "M-HMS",
